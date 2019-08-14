@@ -208,6 +208,7 @@ def play():
         while game_on:
 
             marker = player1[0]
+            display_board(board)
             position = player_choice(board, player1)
 
             if space_check(board, position):
@@ -220,7 +221,7 @@ def play():
             if full_board_check(board):
                 print("the board is full. nobody won.")
                 break
-            marker = player2[0]         
+            marker = player2[0]
             position = player_choice(board, player2)
 
             if space_check(board, position):
