@@ -7,7 +7,6 @@ class TerminalColors:
     magenta = "\033[1;35;40m"
     cyan = "\033[1;36;40m"
     white = "\033[1;37;40m"
-    regular = "\033[1;37;40m"
 
 
 tc = TerminalColors()

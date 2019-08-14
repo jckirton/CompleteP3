@@ -257,4 +257,3 @@ else:
         else:
             print("yes or no?")
             time.sleep(1)
-            time.sleep(0)
