@@ -1,4 +1,5 @@
 import random
+from funcs import clear
 
 suits = ("❤️", "💎", "⚜️", "☘️")
 ranks = (
@@ -63,6 +64,27 @@ class Deck:
         return self.deck.pop()
 
 
-test = Deck()
-test.shuffle()
-print(test)
+clear()
+deck = Deck()
+deck.shuffle()
+print(deck)
+
+
+class Hand:
+    def __init__(self):
+        self.cards = []
+        self.value = 0
+        self.aces = 0
+
+    def add_card(self, card):
+        self.cards.append(card)
+        self.value += values[card.rank]
+
+    def adjust_for_ace(self):
+        pass
+
+
+player = Hand()
+pulled_card = deck.deal
+print(pulled_card)
+player.add_card(pulled_card)
