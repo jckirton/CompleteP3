@@ -64,11 +64,6 @@ class Deck:
         return self.deck.pop()
 
 
-# deck = Deck()
-# deck.shuffle()
-# print(deck)
-
-
 class Hand:
     def __init__(self):
         self.cards = []
@@ -85,25 +80,6 @@ class Hand:
         while self.value > 21 and self.aces:
             self.value -= 10
             self.aces -= 1
-
-
-# player = Hand()
-# pulled_card = deck.deal()
-# print(pulled_card)
-# player.add_card(pulled_card)
-# print(player.value)
-
-# New Chips Class
-# func INIT:
-#   - check if file 'chips' exists
-#   - read first line and store
-#   - check if stored info exists and contains an integer on the first line
-#   - if present AND integer set to total
-#   - if not present - set to 100
-
-# func SAVE_CHIPS
-#   - take current total and save to chips file (overwrite)
-#   - add to win/lose functions for an autosave!
 
 
 def save_game():
