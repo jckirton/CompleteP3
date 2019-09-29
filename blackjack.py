@@ -106,16 +106,33 @@ class Hand:
 #   - add to win/lose functions for an autosave!
 
 
+def save_game():
+    player_chips.save_chips()
+
+
 class Chips:
-    def __init__(self, total=100):
-        self.total = total
+    def __init__(self):
+        try:
+            with open("chips", "r") as file:
+                self.total = int(file.read())
+        except FileNotFoundError:
+            print("No save found, creating new save.")
+            self.total = 100
+        except Exception:
+            self.total = 100
         self.bet = 0
+
+    def save_chips(self):
+        with open("chips", "w") as file:
+            file.write(str(player_chips.total))
 
     def win_bet(self):
         self.total += self.bet
+        self.save_chips()
 
     def lose_bet(self):
         self.total -= self.bet
+        self.save_chips()
 
 
 def take_bet(chips):
@@ -274,6 +291,5 @@ while True:
 
     # Ask to play again
     if not replay():
-        with open("chips", "w") as save:
-            save.write(str(player_chips.total))
+        save_game()
         break
