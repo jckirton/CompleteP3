@@ -16,3 +16,22 @@ def loading():
     print(f"Estimated Wait: {wait} second{'' if wait == 1 else 's'}")
     time.sleep(wait)
     # print("\n" * 100)
+
+
+def replay():
+    """
+    Restarts the game.
+    """
+    import time
+
+    while True:
+        check = input("Would you like to play again? ").lower()
+        if check in "no":
+            print("Thanks For Playing!")
+            return False
+        elif check in "yes":
+            print("\n" * 100)
+            return True
+        else:
+            print("yes or no?")
+            time.sleep(1)

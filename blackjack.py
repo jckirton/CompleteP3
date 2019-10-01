@@ -1,3 +1,6 @@
+'''
+Starts a playable and savable game of Blackjack.
+'''
 import random
 import time
 
