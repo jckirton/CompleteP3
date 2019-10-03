@@ -28,6 +28,8 @@ def replay():
         check = input("Would you like to play again? ").lower()
         if check in "no":
             print("Thanks For Playing!")
+            time.sleep(1.5)
+            print("\n" * 100)
             return False
         elif check in "yes":
             print("\n" * 100)
@@ -35,3 +37,19 @@ def replay():
         else:
             print("yes or no?")
             time.sleep(1)
+
+
+class TerminalColors:
+    """
+    A variety of colors to use for your terminal.
+    """
+
+    grey = "\033[1;30;40m"
+    red = "\033[1;31;40m"
+    green = "\033[1;32;40m"
+    yellow = "\033[1;33;40m"
+    blue = "\033[1;34;40m"
+    magenta = "\033[1;35;40m"
+    cyan = "\033[1;36;40m"
+    white = "\033[1;37;40m"
+    regular = "\033[1;37;40m"

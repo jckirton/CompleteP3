@@ -1,6 +1,6 @@
-'''
-Starts a playable and savable game of Blackjack.
-'''
+"""
+Creates and starts a playable and savable game of Blackjack.
+"""
 import random
 import time
 
@@ -183,13 +183,13 @@ def dealer_wins(player, dealer, chips):
 
 
 def push(player, dealer):
-    print("Dealer and Player tie! It's a push.")
+    print("Dealer and Player tie! It's a push...")
 
 
 def replay():
     """
-        Restarts the game.
-        """
+    Restarts the game.
+    """
     while True:
         check = input("Would you like to play again? ").lower()
         if check in "no":
@@ -207,7 +207,9 @@ def replay():
 
 while True:
     # Print an opening statement
-    print("Hello and welcome to Blackjack")
+    print("\n" * 100)
+    print("Hello and welcome to Blackjack.")
+    print("A production by Ben & Son, a coding family.")
     game_on = True
     # Create & shuffle the deck, deal two cards to each player
     deck = Deck()
