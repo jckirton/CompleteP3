@@ -53,3 +53,7 @@ class TerminalColors:
     cyan = "\033[1;36;40m"
     white = "\033[1;37;40m"
     regular = "\033[1;37;40m"
+
+
+def func_breaker(og_func):
+    print("Sorry this function is broken :(")
