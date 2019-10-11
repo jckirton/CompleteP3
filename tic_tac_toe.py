@@ -165,14 +165,11 @@ def replay():
     while True:
         check = input("Would you like to play again? ").lower()
         if check in "no":
-            print("Thanks For Playing!")
-            time.sleep(1.5)
-            print("\n" * 100)
             return False
         elif check in "yes":
             print("\n" * 100)
             return True
-        elif check in "maybe":
+        elif check in "maybe?":
             return random.randint(0, 1)
         else:
             print("yes or no?")
@@ -240,7 +237,9 @@ def play():
                 break
 
         if not replay():
-            time.sleep(3)
+            print("Thanks for playing!")
+            time.sleep(1.5)
+            print("\n" * 100)
             break
 
 

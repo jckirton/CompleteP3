@@ -23,17 +23,17 @@ def replay():
     Restarts the game.
     """
     import time
+    import random
 
     while True:
         check = input("Would you like to play again? ").lower()
         if check in "no":
-            print("Thanks For Playing!")
-            time.sleep(1.5)
-            print("\n" * 100)
             return False
         elif check in "yes":
             print("\n" * 100)
             return True
+        elif check in "maybe?":
+            return random.randint(0, 1)
         else:
             print("yes or no?")
             time.sleep(1)
