@@ -172,6 +172,8 @@ def replay():
         elif check in "yes":
             print("\n" * 100)
             return True
+        elif check in "maybe":
+            return random.randint(0, 1)
         else:
             print("yes or no?")
             time.sleep(1)
