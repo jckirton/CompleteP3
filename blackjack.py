@@ -191,7 +191,9 @@ def replay():
     Restarts the game.
     """
     while True:
-        check = input("Would you like to play again? ").lower()
+        check = input(
+            'Would you like to play again?\nType "maybe" or "?" to leave it up to the computer. '
+        ).lower()
         if check in "no":
             return False
         elif check in "yes":
