@@ -193,6 +193,7 @@ def play():
     while True:
         print("\n" * 100)
         print("Welcome to tic tac toe!")
+        print('A production by Ben and son, a coding family.')
         # default board
         board = ["#"] + [" "] * 9
         # alternate board
