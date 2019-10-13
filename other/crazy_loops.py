@@ -1,2 +1,2 @@
 for number in range(99999):
-    print("Love you dad.❤️")
+    print("Love you mum.❤️")

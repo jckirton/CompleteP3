@@ -105,8 +105,13 @@ class Chips:
         with open("chips", "w") as file:
             file.write(str(player_chips.total))
 
-    def win_bet(self):
-        self.total += self.bet
+    def win_bet(self, blackjack=False):
+        # self.total += self.bet if not blackjack else (self.bet * 1.5)
+        if blackjack:
+            self.total += self.bet * 1.5
+        else:
+            self.total += self.bet
+
         self.save_chips()
 
     def lose_bet(self):
@@ -186,6 +191,11 @@ def push(player, dealer):
     print("Dealer and Player tie! It's a push...")
 
 
+def blackjack(player, chips):
+    print("You got a blackjack! 😯")
+    chips.win_bet(blackjack=True)
+
+
 def replay():
     """
     Restarts the game.
@@ -212,6 +222,7 @@ while True:
     print("Hello and welcome to Blackjack.")
     print("A production by Ben & Son, a coding family.")
     game_on = True
+    black_jack = False
     # Create & shuffle the deck, deal two cards to each player
     deck = Deck()
     deck.shuffle()
@@ -233,7 +244,12 @@ while True:
     # Show cards (but keep one dealer card hidden)
     show_some(player_hand, dealer_hand)
 
-    while game_on:  # recall this variable from our hit_or_stand function
+    if player_hand.value == 21:
+        blackjack(player_hand, player_chips)
+        black_jack = True
+
+    # PLAYERS TURN
+    while game_on and not black_jack:
 
         # Prompt for Player to Hit or Stand
         hit_or_stand(deck, player_hand)
@@ -247,7 +263,9 @@ while True:
             break
 
         # If Player hasn't busted, play Dealer's hand until Dealer reaches 17
-    if player_hand.value <= 21:
+
+    # DEALERS TURN
+    if player_hand.value <= 21 and not black_jack:
 
         while dealer_hand.value < 17:
             hit(deck, dealer_hand)

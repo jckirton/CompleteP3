@@ -10,4 +10,4 @@ class TerminalColors:
 
 
 tc = TerminalColors()
-print(f"{tc.green}fjgojhofjihojfiohjfiohjiofjhiojhiofjhiofjhiofjhiojgho")
+print(f"{tc.magenta}fjgojhofjihojfiohjfiohjiofjhiojhiofjhiofjhiofjhiojgho")
