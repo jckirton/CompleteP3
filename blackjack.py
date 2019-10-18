@@ -93,11 +93,12 @@ class Chips:
     def __init__(self):
         try:
             with open("chips", "r") as file:
-                self.total = int(file.read())
+                self.total = int(float(file.read()))
         except FileNotFoundError:
             print("No save found, creating new save.")
             self.total = 100
         except Exception:
+            print("Save not viable.")
             self.total = 100
         self.bet = 0
 
@@ -240,7 +241,7 @@ while True:
 
     # Prompt the Player for their bet
     take_bet(player_chips)
-
+    # player_hand.value = 21
     # Show cards (but keep one dealer card hidden)
     show_some(player_hand, dealer_hand)
 
@@ -263,7 +264,6 @@ while True:
             break
 
         # If Player hasn't busted, play Dealer's hand until Dealer reaches 17
-
     # DEALERS TURN
     if player_hand.value <= 21 and not black_jack:
 
