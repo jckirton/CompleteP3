@@ -56,4 +56,18 @@ class TerminalColors:
 
 
 def func_breaker(og_func):
-    print("Sorry this function is broken :(")
+    import time
+
+    print("Sorry this function is broken :(\n       [Error No. 5]")
+    while True:
+        deats = input("Detals?\n").lower()
+        if deats in "no":
+            print("Plz call [insert number here] to let then know.")
+            break
+        elif deats in "yes":
+            print(f"{og_func} is no longer functional.")
+            print("Plz call [insert number here] to let then know.")
+            break
+        else:
+            print("Yes or no?")
+            time.sleep(1.5)
