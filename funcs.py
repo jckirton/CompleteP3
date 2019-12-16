@@ -1,4 +1,7 @@
 def clear():
+    """
+    A function that "clears" the terminal or output screen
+    """
     print("\n" * 100)
 
 

@@ -30,7 +30,6 @@ def get_num(question):
     while type(num) is not int:
         try:
             num = int(input(question))
-            print("\n" * 100)
         except ValueError:
             print("Please choose a number.")
 
@@ -66,8 +65,11 @@ def play():
         print("Hello and welcome to number guess!")
         print("A production by Ben and son, a coding family.")
         first_num = get_num(LOW_QUESTION)
+        print("\n" * 100)
         second_num = get_num(HIGH_QUESTION)
-
+        while first_num == second_num:
+            print("Please put in two differnt numbers")
+            second_num = get_num(HIGH_QUESTION)
         low_num = first_num if first_num < second_num else second_num
         high_num = first_num if first_num > second_num else second_num
         num_to_guess = random.randint(low_num, high_num)
