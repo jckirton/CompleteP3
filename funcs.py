@@ -5,7 +5,7 @@ def clear():
     print("\n" * 100)
 
 
-def loading():
+def loading(time1=1, time2=10):
     """
     Creates a false loading screen.
     """
