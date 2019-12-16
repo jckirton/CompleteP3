@@ -13,7 +13,7 @@ def loading(time1=1, time2=10):
     import time
     import random
 
-    wait = random.randint(1, 10)
+    wait = random.randint(time1, time2)
     # print("\n" * 100)
     print("\nLoading Now")
     print(f"Estimated Wait: {wait} second{'' if wait == 1 else 's'}")
