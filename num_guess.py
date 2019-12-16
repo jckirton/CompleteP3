@@ -42,7 +42,7 @@ def get_guess(low_num, high_num):
         try:
             guess_num = int(
                 input(
-                    f'Please guess a number between {low_num} and {high_num}.\nType "i give up" if you give up.\n'
+                    f'Please guess a number between {low_num} and {high_num}.\n'
                 )
             )
             # if guess_num in "i give up":
@@ -51,7 +51,7 @@ def get_guess(low_num, high_num):
             if guess_num not in list(range(low_num, high_num + 1)):
                 raise IndexError
         except IndexError:
-            print(f"Please guess between {low_num} and {high_num}.")
+            print(f"Not between {low_num} and {high_num}.")
         except ValueError:
             print("Please choose a number.")
 
