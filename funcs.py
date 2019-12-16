@@ -56,6 +56,10 @@ class TerminalColors:
 
 
 def func_breaker(og_func):
+    """
+    A function that breaks other functions, good for if there under
+    development or if you want to prank a fellow coder.
+    """
     import time
 
     print("Sorry this function is broken :(\n       [Error No. 5]")
