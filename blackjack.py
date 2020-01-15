@@ -4,6 +4,7 @@ Creates and starts a playable and savable game of Blackjack.
 import random
 import time
 
+save_file = ".chips"
 suits = ("❤️", "💎", "⚜️", "☘️")
 ranks = (
     "Two",
@@ -92,7 +93,7 @@ def save_game():
 class Chips:
     def __init__(self):
         try:
-            with open("chips", "r") as file:
+            with open(save_file, "r") as file:
                 self.total = int(float(file.read()))
         except FileNotFoundError:
             print("No save found, creating new save.")
@@ -103,7 +104,7 @@ class Chips:
         self.bet = 0
 
     def save_chips(self):
-        with open("chips", "w") as file:
+        with open(save_file, "w") as file:
             file.write(str(player_chips.total))
 
     def win_bet(self, blackjack=False):

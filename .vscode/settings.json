@@ -1,6 +1,6 @@
 {
     "python.venvPath": "~/Developer/.virtualenvs",
-    "python.pythonPath": "/usr/local/bin/python3",
+    "python.pythonPath": "/Users/jackson/Developer/.virtualenvs/.sandbox/bin/python",
     "explorer.confirmDelete": false,
     "workbench.activityBar.visible": true,
     "workbench.sideBar.location": "left",
@@ -32,5 +32,7 @@
     "editor.fontLigatures": true,
     "editor.cursorBlinking": "expand",
     "workbench.view.alwaysShowHeaderActions": true,
-    "code-runner.runInTerminal": true
+    "code-runner.runInTerminal": true,
+    "python.linting.pylintEnabled": false,
+    "python.linting.enabled": true
 }
