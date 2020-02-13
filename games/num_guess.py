@@ -65,6 +65,7 @@ def play():
         first_num = get_num(LOW_QUESTION)
         print("\n" * 100)
         second_num = get_num(HIGH_QUESTION)
+        print("\n" * 100)
         while first_num == second_num:
             print("Please put in two differnt numbers")
             second_num = get_num(HIGH_QUESTION)
