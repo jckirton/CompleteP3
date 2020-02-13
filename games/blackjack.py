@@ -194,7 +194,7 @@ def push(player, dealer):
 
 
 def blackjack(player, chips):
-    print("You got a blackjack! 😯")
+    print("You got a blackjack! 😳 ")
     chips.win_bet(blackjack=True)
 
 
@@ -242,7 +242,7 @@ while True:
 
     # Prompt the Player for their bet
     take_bet(player_chips)
-    # player_hand.value = 21
+    player_hand.value = 21
     # Show cards (but keep one dealer card hidden)
     show_some(player_hand, dealer_hand)
 
