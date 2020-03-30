@@ -44,5 +44,6 @@
     "workbench.view.alwaysShowHeaderActions": true,
     "code-runner.runInTerminal": true,
     "python.linting.pylintEnabled": false,
-    "python.linting.enabled": true
+    "python.linting.enabled": true,
+    "editor.columnSelection": true
 }

@@ -117,8 +117,14 @@ class Chips:
         self.save_chips()
 
     def lose_bet(self):
-        self.total -= self.bet
-        self.save_chips()
+        if (self.total - self.bet) == 0:
+            print("\nYour Out of Chips!\nGiving new chip stack.")
+            self.total = 100
+            with open(save_file, "w") as file:
+                file.write(str("100"))
+        else:
+            self.total -= self.bet
+            self.save_chips()
 
 
 def take_bet(chips):
@@ -132,7 +138,14 @@ def take_bet(chips):
             print("please put in a number, otherwise it wont work.")
         else:
             if chips.bet > chips.total:
+                print("\n" * 100)
                 print(f"You only have {chips.total} chips not {chips.bet} chips!")
+            elif chips.bet == 0:
+                print("\n" * 100)
+                print("You have to bet something!")
+            elif chips.bet < 0:
+                print("\n" * 100)
+                print("You can't bet less then nothing!\nThat makes no logical sense!")
             else:
                 break
 
@@ -288,7 +301,7 @@ while True:
             push(player_hand, dealer_hand)
 
     # Inform Player of their chips total
-    print("\nPlayer's winnings stand at", player_chips.total)
+    print("\nPlayer's chip total stands at", player_chips.total)
 
     # Ask to play again
     if not replay():
