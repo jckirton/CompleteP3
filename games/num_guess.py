@@ -42,7 +42,7 @@ def get_guess(low_num, high_num):
         try:
             guess_num = int(
                 input(
-                    f"Please guess a number between {low_num} and {high_num}.\nPress CNTRL + C to quit at any time.\n"
+                    f"Please guess a number between {low_num} and {high_num}.\nPress CTRL + C to quit at any time.\n"
                 )
             )
             # if guess_num in "i give up":

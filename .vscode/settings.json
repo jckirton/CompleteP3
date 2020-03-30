@@ -2,7 +2,6 @@
     "python.venvPath": "~/Developer/.virtualenvs",
     "python.pythonPath": "/Users/jackson/Developer/.virtualenvs/.sandbox/bin/python",
     "explorer.confirmDelete": false,
-    "workbench.activityBar.visible": true,
     "workbench.sideBar.location": "left",
     "editor.minimap.enabled": true,
     "python.dataScience.sendSelectionToInteractiveWindow": true,
@@ -17,9 +16,18 @@
     "editor.formatOnSave": true,
     "workbench.colorTheme": "Dracula",
     "editor.rulers": [
-        90,
-        130,
-        180
+        {
+            "column": 90,
+            "color": "#00ff0d"
+        },
+        {
+            "column": 130,
+            "color": "#ff4800"
+        },
+        {
+            "column": 180,
+            "color": "#ff0000"
+        }
     ],
     "workbench.iconTheme": "material-icon-theme",
     "explorer.confirmDragAndDrop": false,
