@@ -41,7 +41,9 @@ def get_guess(low_num, high_num):
     while guess_num not in list(range(low_num, high_num + 1)):
         try:
             guess_num = int(
-                input(f"Please guess a number between {low_num} and {high_num}.\n")
+                input(
+                    f"Please guess a number between {low_num} and {high_num}.\nPress CNTRL + C to quit at any time.\n"
+                )
             )
             # if guess_num in "i give up":
             # print(f"Awww, you were so close!\nThe number was {num_to_guess}.")
@@ -85,6 +87,7 @@ def play():
 
         print("\n" * 100)
         print("Hooray! Good job.👍")
+        print(f"The number was {num_to_guess}")
 
         if not replay():
             print("Thanks for playing!")
