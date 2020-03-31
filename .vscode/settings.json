@@ -45,5 +45,8 @@
     "code-runner.runInTerminal": true,
     "python.linting.pylintEnabled": false,
     "python.linting.enabled": true,
-    "editor.columnSelection": true
+    "editor.columnSelection": true,
+    "git.ignoredRepositories": [
+        ".chips"
+    ]
 }
