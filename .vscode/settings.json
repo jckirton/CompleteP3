@@ -47,5 +47,15 @@
     "python.linting.enabled": true,
     "git.ignoredRepositories": [
         ".chips"
-    ]
+    ],
+    "bracket-pair-colorizer-2.colors": [
+        "#00ff0d",
+        "#ff00bf",
+        "#ff0000",
+        "#0040ff",
+        "#a900ff",
+        "#fbff00",
+        "#ffffff",
+        "#000000"
+    ],
 }
