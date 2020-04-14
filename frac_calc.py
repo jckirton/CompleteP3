@@ -8,27 +8,27 @@ def div_frac(n1: int, d1: int, n2: int, d2: int):
 
 def mul_frac(n1: int, d1: int, n2: int, d2: int):
 
-    new_n = n1 * d2
-    new_d = d1 * n2
+    new_n = n1 * n2
+    new_d = d1 * d2
 
     print(f"\nThe answer is:\n\n {new_n}\n---\n {new_d}\n\nOr\n\n{new_n / new_d}\n\n")
 
 
 def add_frac(n1: int, d1: int, n2: int, d2: int):
-    pass
+    print("Sorry, this function is incomplete.👨‍🔧")
 
 
 def sub_frac(n1: int, d1: int, n2: int, d2: int):
-    pass
+    print("Sorry, this function is incomplete.👨‍🔧")
 
 
 def get_frac():
     print("\n" * 100)
     function = input(
-        "+ = Addition\n\n- = Subtraction\n\n* = Multiplaction\n\n/ = Divition\n\nWich one do you want to do?\n\n"
+        "'+' = Addition\n\n'-' = Subtraction\n\n'*' = Multiplaction\n\n'/' = Divition\n\n' ' = Needless Typing\n\nWich one do you want to do?\n\n"
     )
-    frac1 = input("What is your first fraction? ")
-    frac2 = input("What is your second fraction? ")
+    frac1 = input("\nWhat is your first fraction? ")
+    frac2 = input("\nWhat is your second fraction? ")
 
     split_frac1 = frac1.split("/")
     split_frac2 = frac2.split("/")
