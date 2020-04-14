@@ -1,3 +1,7 @@
+def lcm(d1: int, d2: int):
+    pass
+
+
 def div_frac(n1: int, d1: int, n2: int, d2: int):
 
     new_n = n1 * d2
@@ -25,7 +29,7 @@ def sub_frac(n1: int, d1: int, n2: int, d2: int):
 def get_frac():
     print("\n" * 100)
     function = input(
-        "'+' = Addition\n\n'-' = Subtraction\n\n'*' = Multiplaction\n\n'/' = Divition\n\n' ' = Needless Typing\n\nWich one do you want to do?\n\n"
+        "'+' = Addition\n\n'-' = Subtraction\n\n'*' = Multiplication\n\n'/' = Divition\n\n' ' = Needless Typing\n\nWich one do you want to do?\n\n"
     )
     frac1 = input("\nWhat is your first fraction? ")
     frac2 = input("\nWhat is your second fraction? ")
