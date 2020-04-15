@@ -7,7 +7,9 @@ def div_frac(n1: int, d1: int, n2: int, d2: int):
     new_n = n1 * d2
     new_d = d1 * n2
 
-    print(f"\nThe answer is:\n\n {new_n}\n---\n {new_d}\n\nOr\n\n{new_n / new_d}\n\n")
+    print(
+        f"\nThe answer is:\n\n  {new_n}\n-----\n  {new_d}\n\nOr\n\n{new_n / new_d}\n\n"
+    )
 
 
 def mul_frac(n1: int, d1: int, n2: int, d2: int):
@@ -15,7 +17,9 @@ def mul_frac(n1: int, d1: int, n2: int, d2: int):
     new_n = n1 * n2
     new_d = d1 * d2
 
-    print(f"\nThe answer is:\n\n {new_n}\n---\n {new_d}\n\nOr\n\n{new_n / new_d}\n\n")
+    print(
+        f"\nThe answer is:\n\n  {new_n}\n-----\n  {new_d}\n\nOr\n\n{new_n / new_d}\n\n"
+    )
 
 
 def add_frac(n1: int, d1: int, n2: int, d2: int):
