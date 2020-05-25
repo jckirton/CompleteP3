@@ -1,3 +1,6 @@
+import os
+# import time
+
 morse = {
     "a": ".-",
     "b": "-...",
@@ -35,11 +38,25 @@ morse = {
     "8": "----..",
     "9": "----.",
     "0": "-----",
-    " ": " ",
+    " ": "|",
 }
 
 
-# text = input('What would you like to convert?\n')
+text = input("What would you like to convert?\n")
+output = []
+os.system(f'say "{text}"')
+for letter in text.lower():
+    if letter not in morse:
+        print(letter, end="  ")
+    else:
+        output.append(morse[letter])
+        print(morse[letter], end="  ")
 
-# for letters in text:
-#     pass
+for letter in output:
+    for symbol in letter:
+        if symbol == ".":
+            os.system('say "beep"')
+        elif symbol == "-":
+            os.system('say "boop"')
+        elif symbol == "|":
+            os.system('say "space"')

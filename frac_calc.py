@@ -9,7 +9,7 @@ def div_frac(n1: int, d1: int, n2: int, d2: int):
 
     print("\n" * 100)
     print(
-        f"\nThe answer is:\n\n  {new_n}\n-----\n  {new_d}\n\nOr\n\n{new_n / new_d}\n\n--------------"
+        f"\nThe answer is:\n\n  {new_n}\n-----\n  {new_d}\n\nOr\n\n{new_n / new_d}\n\n--------------\n"
     )
 
 
@@ -20,7 +20,7 @@ def mul_frac(n1: int, d1: int, n2: int, d2: int):
 
     print("\n" * 100)
     print(
-        f"\nThe answer is:\n\n  {new_n}\n-----\n  {new_d}\n\nOr\n\n{new_n / new_d}\n\n--------------"
+        f"\nThe answer is:\n\n  {new_n}\n-----\n  {new_d}\n\nOr\n\n{new_n / new_d}\n\n--------------\n"
     )
 
 
