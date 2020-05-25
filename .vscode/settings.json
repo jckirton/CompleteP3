@@ -46,7 +46,9 @@
     "python.linting.pylintEnabled": false,
     "python.linting.enabled": true,
     "git.ignoredRepositories": [
-        ".chips"
+        "\".chips\"",
+        "\"/Users/jackson/Developer/CompleteP3/.chips\"",
+        "/Users/jackson/Developer/CompleteP3/.chips"
     ],
     "bracket-pair-colorizer-2.colors": [
         "#00ff0d",
