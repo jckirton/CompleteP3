@@ -223,7 +223,7 @@ def play():
                 print("Player 1 wins!!!")
                 break
             if full_board_check(board):
-                print("the board is full. nobody won.")
+                print("the board is full. Nobody won.")
                 break
             marker = player2[0]
             position = player_choice(board, player2)
