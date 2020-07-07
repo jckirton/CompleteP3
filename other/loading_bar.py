@@ -9,8 +9,8 @@ def spinning_cursor():
 
 
 spinner = spinning_cursor()
-for _ in range(10):
+for _ in range(20):
     sys.stdout.write(next(spinner))
     sys.stdout.flush()
-    time.sleep(.2)
+    time.sleep(.1)
     sys.stdout.write("\b")
