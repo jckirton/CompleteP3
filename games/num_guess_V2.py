@@ -58,8 +58,8 @@ def get_guess(low_num, high_num):
     return guess_num
 
 
-def display_nums(low_num, high_num, num_to_guess, guess_num):
-    pass
+# def display_nums(low_num, high_num, guess_num):
+#     print(f'')
 
 
 def play():
@@ -85,9 +85,11 @@ def play():
             if guess_num < num_to_guess:
                 print("\n" * 100)
                 print("Higher")
+                low_num = guess_num
             elif guess_num > num_to_guess:
                 print("\n" * 100)
                 print("Lower")
+                high_num = guess_num
 
         print("\n" * 100)
         print("Hooray! Good job.👍")
