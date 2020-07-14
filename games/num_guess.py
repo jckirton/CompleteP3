@@ -1,5 +1,6 @@
 import random
 import time
+from funcs import ploy
 
 LOW_QUESTION = "Low number please.\n"
 HIGH_QUESTION = "High number please.\n"
@@ -98,3 +99,5 @@ def play():
 
 if __name__ == "__main__":
     play()
+else:
+    ploy(play, "Number Guess")

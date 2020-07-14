@@ -3,6 +3,7 @@ Creates a playable tic tac toe game.
 """
 import random
 import time
+from funcs import ploy
 
 
 # import pysnooper
@@ -65,7 +66,7 @@ def player_input():
         else:
             player2 = (f"{tc.cyan}X{tc.regular}", 2)
 
-    print("Player 1 is {} and Player 2 is {}".format(player1[0], player2[0]))
+    print(f"Player 1 is {player1[0]} and Player 2 is {player2[0]}")
     return player1, player2
 
 
@@ -249,15 +250,5 @@ def play():
 if __name__ == "__main__":
     play()
 else:
-    while True:
-        p = input("would you like to play?\n").lower()
-        if p in "no":
-            print("ok")
-            time.sleep(1)
-            print("\n" * 100)
-            break
-        elif p in "yes":
-            play()
-        else:
-            print("yes or no?")
-            time.sleep(1)
+    ploy(play, "Tic Tac Toe")
+

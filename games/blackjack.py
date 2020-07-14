@@ -3,6 +3,7 @@ Creates and starts a playable and savable game of Blackjack.
 """
 import random
 import time
+from funcs import ploy
 
 save_file = ".chips"
 suits = ("❤️", "💎", "⚜️", "☘️")
@@ -86,8 +87,8 @@ class Hand:
             self.aces -= 1
 
 
-def save_game():
-    player_chips.save_chips()
+# def save_game():
+#     player_chips.save_chips()
 
 
 class Chips:
@@ -105,7 +106,7 @@ class Chips:
 
     def save_chips(self):
         with open(save_file, "w") as file:
-            file.write(str(player_chips.total))
+            file.write(str(self.total))
 
     def win_bet(self, blackjack=False):
         # self.total += self.bet if not blackjack else (self.bet * 1.5)
@@ -231,81 +232,89 @@ def replay():
             time.sleep(1)
 
 
-while True:
-    # Print an opening statement
-    print("\n" * 100)
-    print("Hello and welcome to Blackjack.")
-    print("A production by Ben & Son, a coding family.")
-    game_on = True
-    black_jack = False
-    # Create & shuffle the deck, deal two cards to each player
-    deck = Deck()
-    deck.shuffle()
+def play():
+    while True:
+        # Print an opening statement
+        print("\n" * 100)
+        print("Hello and welcome to Blackjack.")
+        print("A production by Ben & Son, a coding family.")
+        global game_on
+        game_on = True
+        black_jack = False
+        # Create & shuffle the deck, deal two cards to each player
+        deck = Deck()
+        deck.shuffle()
 
-    player_hand = Hand()
-    player_hand.add_card(deck.deal())
-    player_hand.add_card(deck.deal())
+        player_hand = Hand()
+        player_hand.add_card(deck.deal())
+        player_hand.add_card(deck.deal())
 
-    dealer_hand = Hand()
-    dealer_hand.add_card(deck.deal())
-    dealer_hand.add_card(deck.deal())
+        dealer_hand = Hand()
+        dealer_hand.add_card(deck.deal())
+        dealer_hand.add_card(deck.deal())
 
-    # Set up the Player's chips
-    player_chips = Chips()  # remember the default value is 100
+        # Set up the Player's chips
+        player_chips = Chips()  # remember the default value is 100
 
-    # Prompt the Player for their bet
-    take_bet(player_chips)
-    # player_hand.value = 21
-    # Show cards (but keep one dealer card hidden)
-    show_some(player_hand, dealer_hand)
-
-    if player_hand.value == 21:
-        blackjack(player_hand, player_chips)
-        black_jack = True
-
-    # PLAYERS TURN
-    while game_on and not black_jack:
-
-        # Prompt for Player to Hit or Stand
-        hit_or_stand(deck, player_hand)
-
+        # Prompt the Player for their bet
+        take_bet(player_chips)
+        # player_hand.value = 21
         # Show cards (but keep one dealer card hidden)
         show_some(player_hand, dealer_hand)
 
-        # If player's hand exceeds 21, run player_busts() and break out of loop
-        if player_hand.value > 21:
-            player_busts(player_hand, dealer_hand, player_chips)
-            break
+        if player_hand.value == 21:
+            blackjack(player_hand, player_chips)
+            black_jack = True
+
+        # PLAYERS TURN
+        while game_on and not black_jack:
+
+            # Prompt for Player to Hit or Stand
+            hit_or_stand(deck, player_hand)
+
+            # Show cards (but keep one dealer card hidden)
+            show_some(player_hand, dealer_hand)
+
+            # If player's hand exceeds 21, run player_busts() and break out of loop
+            if player_hand.value > 21:
+                player_busts(player_hand, dealer_hand, player_chips)
+                break
 
         # If Player hasn't busted, play Dealer's hand until Dealer reaches 17
-    # DEALERS TURN
-    if player_hand.value <= 21 and not black_jack:
+        # DEALERS TURN
+        if player_hand.value <= 21 and not black_jack:
 
-        while dealer_hand.value < 17:
-            hit(deck, dealer_hand)
+            while dealer_hand.value < 17:
+                hit(deck, dealer_hand)
 
-        # Show all cards
-        show_all(player_hand, dealer_hand)
+            # Show all cards
+            show_all(player_hand, dealer_hand)
 
-        # Run different winning scenarios
-        if dealer_hand.value > 21:
-            dealer_busts(player_hand, dealer_hand, player_chips)
+            # Run different winning scenarios
+            if dealer_hand.value > 21:
+                dealer_busts(player_hand, dealer_hand, player_chips)
 
-        elif dealer_hand.value > player_hand.value:
-            dealer_wins(player_hand, dealer_hand, player_chips)
+            elif dealer_hand.value > player_hand.value:
+                dealer_wins(player_hand, dealer_hand, player_chips)
 
-        elif dealer_hand.value < player_hand.value:
-            player_wins(player_hand, dealer_hand, player_chips)
+            elif dealer_hand.value < player_hand.value:
+                player_wins(player_hand, dealer_hand, player_chips)
 
-        else:
-            push(player_hand, dealer_hand)
+            else:
+                push(player_hand, dealer_hand)
 
-    # Inform Player of their chips total
-    print("\nPlayer's chip total stands at", player_chips.total)
+        # Inform Player of their chips total
+        print("\nPlayer's chip total stands at", player_chips.total)
 
-    # Ask to play again
-    if not replay():
-        print("Thanks for playing!")
-        time.sleep(1.5)
-        print("\n" * 100)
-        break
+        # Ask to play again
+        if not replay():
+            print("Thanks for playing!")
+            time.sleep(1.5)
+            print("\n" * 100)
+            break
+
+
+if __name__ == "__main__":
+    play()
+else:
+    ploy(play, "Blackjack")
