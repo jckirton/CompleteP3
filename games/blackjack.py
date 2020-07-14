@@ -3,7 +3,6 @@ Creates and starts a playable and savable game of Blackjack.
 """
 import random
 import time
-from funcs import ploy
 
 save_file = ".chips"
 suits = ("❤️", "💎", "⚜️", "☘️")
@@ -316,5 +315,3 @@ def play():
 
 if __name__ == "__main__":
     play()
-else:
-    ploy(play, "Blackjack")

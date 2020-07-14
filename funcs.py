@@ -78,21 +78,3 @@ def func_breaker(og_func):
         else:
             print("Yes or no?")
             time.sleep(1.5)
-
-
-def ploy(play, name):
-    import time
-
-    while True:
-        print("\n" * 100)
-        p = input(f"Would you like to play {name}?\n").lower()
-        if p in "no":
-            print("ok")
-            time.sleep(1)
-            print("\n" * 100)
-            break
-        elif p in "yes":
-            play()
-        else:
-            print("yes or no?")
-            time.sleep(1)

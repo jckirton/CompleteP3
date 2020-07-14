@@ -3,7 +3,6 @@ Creates a playable tic tac toe game.
 """
 import random
 import time
-from funcs import ploy
 
 
 # import pysnooper
@@ -249,6 +248,3 @@ def play():
 
 if __name__ == "__main__":
     play()
-else:
-    ploy(play, "Tic Tac Toe")
-
