@@ -21,7 +21,7 @@ while True:
         num_guess_V2.play()
     else:
         print("\n" * 100)
-        print("Ok, Cya!\n\n-Jackson")
+        print("Ok, Cya!\n\n-Jackson Kirton")
         time.sleep(2.5)
         print("\n" * 100)
         break

@@ -3,23 +3,7 @@ Creates a playable tic tac toe game.
 """
 import random
 import time
-
-
-# import pysnooper
-class TerminalColors:
-    """
-    A variety of colors to use for your terminal.
-    """
-
-    grey = "\033[1;30;40m"
-    red = "\033[1;31;40m"
-    green = "\033[1;32;40m"
-    yellow = "\033[1;33;40m"
-    blue = "\033[1;34;40m"
-    magenta = "\033[1;35;40m"
-    cyan = "\033[1;36;40m"
-    white = "\033[1;37;40m"
-    regular = "\033[1;37;40m"
+from funcs import TerminalColors
 
 
 tc = TerminalColors()
