@@ -100,4 +100,4 @@ def play():
 if __name__ == "__main__":
     play()
 else:
-    ploy(play, "Number Guess")
+    ploy(play, "Number Guess V1.0")
