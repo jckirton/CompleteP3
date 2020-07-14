@@ -67,7 +67,7 @@ def play():
 
     while True:
         print("\n" * 100)
-        print("Hello and welcome to number guess!")
+        print("Hello and welcome to Number Guess!")
         print("A production by Ben and son, a coding family.")
         first_num = get_num(LOW_QUESTION)
         print("\n" * 100)

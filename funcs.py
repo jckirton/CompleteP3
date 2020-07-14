@@ -84,6 +84,7 @@ def ploy(play, name):
     import time
 
     while True:
+        print("\n" * 100)
         p = input(f"Would you like to play {name}?\n").lower()
         if p in "no":
             print("ok")
