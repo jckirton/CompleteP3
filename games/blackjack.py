@@ -160,8 +160,13 @@ def hit_or_stand(deck, hand):
     global game_on
 
     choice = input("\nHit or Stand? ").lower()
-    if choice in "hit" and choice != "":
+    if choice in "hit" and choice != "" and hand.value != 21:
         hit(deck, hand)
+    elif hand.value == 21:
+        print("\nI'm not letting you bust yourself!")
+        time.sleep(1.5)
+        print("\n---- Player Stands. Dealers turn. ----")
+        game_on = False
     else:
         print("\n---- Player Stands. Dealers turn. ----")
         game_on = False
@@ -268,7 +273,6 @@ def play():
         # PLAYERS TURN
         while game_on and not black_jack:
 
-            # Prompt for Player to Hit or Stand
             hit_or_stand(deck, player_hand)
 
             # Show cards (but keep one dealer card hidden)
@@ -287,7 +291,7 @@ def play():
                 hit(deck, dealer_hand)
 
             # Show all cards
-            show_all(player_hand, dealer_hand)
+            # show_all(player_hand, dealer_hand)
 
             # Run different winning scenarios
             if dealer_hand.value > 21:

@@ -29,7 +29,7 @@
             "color": "#ff0000"
         }
     ],
-    "workbench.iconTheme": "material-icon-theme",
+    "workbench.iconTheme": "vscode-icons",
     "explorer.confirmDragAndDrop": false,
     "files.exclude": {
         "**/__pycache__": true,
