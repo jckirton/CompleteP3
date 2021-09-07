@@ -4,7 +4,6 @@
     "explorer.confirmDelete": false,
     "workbench.sideBar.location": "left",
     "editor.minimap.enabled": true,
-    "python.dataScience.sendSelectionToInteractiveWindow": true,
     "code-runner.saveAllFilesBeforeRun": true,
     "code-runner.saveFileBeforeRun": true,
     "python.formatting.provider": "black",
@@ -60,4 +59,6 @@
         "#ffffff",
         "#000000"
     ],
+    "jupyter.sendSelectionToInteractiveWindow": true,
+    "jupyter.jupyterServerType": "local",
 }

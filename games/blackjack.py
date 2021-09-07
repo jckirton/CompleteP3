@@ -4,7 +4,9 @@ Creates and starts a playable and savable game of Blackjack.
 import random
 import time
 
-save_file = ".chips"
+save_1 = ".chips"
+save_2 = ".chips2"
+save_3 = ".chips3"
 suits = ("❤️", "💎", "⚜️", "☘️")
 ranks = (
     "Two",
@@ -86,14 +88,52 @@ class Hand:
             self.aces -= 1
 
 
-# def save_game():
-#     player_chips.save_chips()
-
-
 class Chips:
+    chosen_save = None
+    try:
+        with open(save_1, "r") as file:
+            save1_total = int(float(file.read()))
+    except FileNotFoundError:
+        save1_total = "No Save"
+
+    try:
+        with open(save_2, "r") as file:
+            save2_total = int(float(file.read()))
+    except FileNotFoundError:
+        save2_total = "No Save"
+
+    try:
+        with open(save_3, "r") as file:
+            save3_total = int(float(file.read()))
+    except FileNotFoundError:
+        save3_total = "No Save"
+
+    while True:
+        print("\n" * 100)
+        try:
+            save = int(
+                input(
+                    f"Which save would you like to use?\n1: {save1_total} Chips\n2: {save2_total} Chips\n3: {save3_total} Chips\n"
+                )
+            )
+        except TypeError:
+            print("Please enter a number.")
+
+        if save == 1:
+            chosen_save = save_1
+            break
+        elif save == 2:
+            chosen_save = save_2
+            break
+        elif save == 3:
+            chosen_save = save_3
+            break
+        else:
+            print("There are only 3 saves to choose from, try again.")
+
     def __init__(self):
         try:
-            with open(save_file, "r") as file:
+            with open(self.chosen_save, "r") as file:
                 self.total = int(float(file.read()))
         except FileNotFoundError:
             print("No save found, creating new save.")
@@ -104,7 +144,7 @@ class Chips:
         self.bet = 0
 
     def save_chips(self):
-        with open(save_file, "w") as file:
+        with open(self.chosen_save, "w") as file:
             file.write(str(self.total))
 
     def win_bet(self, blackjack=False):
@@ -120,7 +160,7 @@ class Chips:
         if (self.total - self.bet) == 0:
             print("\nYour Out of Chips!\nGiving new chip stack.")
             self.total = 100
-            with open(save_file, "w") as file:
+            with open(save_1, "w") as file:
                 file.write(str("100"))
         else:
             self.total -= self.bet
@@ -162,7 +202,7 @@ def hit_or_stand(deck, hand):
     choice = input("\nHit or Stand? ").lower()
     if choice in "hit" and choice != "" and hand.value != 21:
         hit(deck, hand)
-    elif hand.value == 21:
+    elif hand.value == 21 and choice not in "hit":
         print("\nI'm not letting you bust yourself!")
         time.sleep(1.5)
         print("\n---- Player Stands. Dealers turn. ----")
