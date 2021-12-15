@@ -7,7 +7,7 @@ import time
 save_1 = ".chips"
 save_2 = ".chips2"
 save_3 = ".chips3"
-suits = ("❤️", "💎", "⚜️", "☘️")
+suits = ("❤️", "♦️", "⚜️", "♣️")
 ranks = (
     "Two",
     "Three",
@@ -89,63 +89,16 @@ class Hand:
 
 
 class Chips:
+    total = None
     chosen_save = None
-    try:
-        with open(save_1, "r") as file:
-            save1_total = int(float(file.read()))
-    except FileNotFoundError:
-        save1_total = "No Save"
-
-    try:
-        with open(save_2, "r") as file:
-            save2_total = int(float(file.read()))
-    except FileNotFoundError:
-        save2_total = "No Save"
-
-    try:
-        with open(save_3, "r") as file:
-            save3_total = int(float(file.read()))
-    except FileNotFoundError:
-        save3_total = "No Save"
-
-    while True:
-        print("\n" * 100)
-        try:
-            save = int(
-                input(
-                    f"Which save would you like to use?\n1: {save1_total} Chips\n2: {save2_total} Chips\n3: {save3_total} Chips\n"
-                )
-            )
-        except TypeError:
-            print("Please enter a number.")
-
-        if save == 1:
-            chosen_save = save_1
-            break
-        elif save == 2:
-            chosen_save = save_2
-            break
-        elif save == 3:
-            chosen_save = save_3
-            break
-        else:
-            print("There are only 3 saves to choose from, try again.")
 
     def __init__(self):
-        try:
-            with open(self.chosen_save, "r") as file:
-                self.total = int(float(file.read()))
-        except FileNotFoundError:
-            print("No save found, creating new save.")
-            self.total = 100
-        except Exception:
-            print("Save not viable.")
-            self.total = 100
         self.bet = 0
 
     def save_chips(self):
-        with open(self.chosen_save, "w") as file:
-            file.write(str(self.total))
+        if self.chosen_save != "debug":
+            with open(self.chosen_save, "w") as file:
+                file.write(str(self.total))
 
     def win_bet(self, blackjack=False):
         # self.total += self.bet if not blackjack else (self.bet * 1.5)
@@ -157,14 +110,83 @@ class Chips:
         self.save_chips()
 
     def lose_bet(self):
+        mto = ""
+        if (self.total - self.bet) > 1:
+            mto = "s"
         if (self.total - self.bet) == 0:
             print("\nYour Out of Chips!\nGiving new chip stack.")
             self.total = 100
-            with open(save_1, "w") as file:
-                file.write(str("100"))
+            self.save_chips()
+        elif (self.total - self.bet) < 10:
+            print(
+                f"\n{self.total - self.bet} chip{mto} is not enough to continue!\nHere, take some of mine."
+            )
+            self.total = 100
+            self.save_chips()
         else:
             self.total -= self.bet
             self.save_chips()
+
+
+def choose_save(chips):
+    try:
+        with open(save_1, "r") as file:
+            save1_total = str(int(float(file.read()))) + " Chips"
+    except FileNotFoundError:
+        save1_total = "No Save"
+    except ValueError:
+        save1_total = "Save Invalid"
+
+    try:
+        with open(save_2, "r") as file:
+            save2_total = str(int(float(file.read()))) + " Chips"
+    except FileNotFoundError:
+        save2_total = "No Save"
+    except ValueError:
+        save2_total = "Save Invalid"
+
+    try:
+        with open(save_3, "r") as file:
+            save3_total = str(int(float(file.read()))) + " Chips"
+    except FileNotFoundError:
+        save3_total = "No Save"
+    except ValueError:
+        save3_total = "Save Invalid"
+
+    while True:
+        print("\n" * 100)
+        save = input(
+            f"Which save would you like to use?\n1: {save1_total}\n2: {save2_total}\n3: {save3_total}\n"
+        )
+
+        if save == "1":
+            chips.chosen_save = save_1
+            break
+        elif save == "2":
+            chips.chosen_save = save_2
+            break
+        elif save == "3":
+            chips.chosen_save = save_3
+            break
+        elif save.lower() == "debug":
+            chips.chosen_save = "debug"
+            break
+        else:
+            print("Please choose one of the three saves.")
+            time.sleep(1.5)
+
+    if chips.chosen_save == "debug":
+        chips.total = float("inf")
+    else:
+        try:
+            with open(chips.chosen_save, "r") as file:
+                chips.total = int(float(file.read()))
+        except FileNotFoundError:
+            print("No save found, creating new save.")
+            chips.total = 100
+        except Exception:
+            print("Save not viable, creating new save.\n")
+            chips.total = 100
 
 
 def take_bet(chips):
@@ -186,6 +208,9 @@ def take_bet(chips):
             elif chips.bet < 0:
                 print("\n" * 100)
                 print("You can't bet less then nothing!\nThat makes no logical sense!")
+            elif chips.bet < 10:
+                print("\n" * 100)
+                print("You have to bet more than that!")
             else:
                 break
 
@@ -228,31 +253,43 @@ def show_all(player, dealer):
 
 
 def player_busts(player, dealer, chips):
+    print("\n" * 100)
+    show_all(player, dealer)
     print("you bust! 😡")
     chips.lose_bet()
 
 
 def player_wins(player, dealer, chips):
+    print("\n" * 100)
+    show_all(player, dealer)
     print("you win! 😃")
     chips.win_bet()
 
 
 def dealer_busts(player, dealer, chips):
+    print("\n" * 100)
+    show_all(player, dealer)
     print("Dealer busts! 😃")
     chips.win_bet()
 
 
 def dealer_wins(player, dealer, chips):
+    print("\n" * 100)
+    show_all(player, dealer)
     print("Dealer wins! 😞")
     chips.lose_bet()
 
 
 def push(player, dealer):
+    print("\n" * 100)
+    show_all(player, dealer)
     print("Dealer and Player tie! It's a push...")
 
 
-def blackjack(player, chips):
-    print("You got a blackjack! 😳 ")
+def blackjack(player, dealer, chips):
+    print("\n" * 100)
+    show_all(player, dealer)
+    print("You got a blackjack! 😳")
     chips.win_bet(blackjack=True)
 
 
@@ -277,11 +314,12 @@ def replay():
 
 
 def play():
+    choose_save(Chips)
     while True:
         # Print an opening statement
         print("\n" * 100)
         print("Hello and welcome to Blackjack.")
-        print("A production by Ben & Son, a coding family.")
+        print("A production by Ben & Son, a coding family.\n")
         global game_on
         game_on = True
         black_jack = False
@@ -307,7 +345,7 @@ def play():
         show_some(player_hand, dealer_hand)
 
         if player_hand.value == 21:
-            blackjack(player_hand, player_chips)
+            blackjack(player_hand, dealer_hand, player_chips)
             black_jack = True
 
         # PLAYERS TURN
