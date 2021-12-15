@@ -7,6 +7,7 @@ import time
 save_1 = ".chips"
 save_2 = ".chips2"
 save_3 = ".chips3"
+total = 0
 suits = ("❤️", "♦️", "⚜️", "♣️")
 ranks = (
     "Two",
@@ -89,8 +90,7 @@ class Hand:
 
 
 class Chips:
-    total = None
-    chosen_save = None
+    chosen_save = ""
 
     def __init__(self):
         self.bet = 0
@@ -98,37 +98,40 @@ class Chips:
     def save_chips(self):
         if self.chosen_save != "debug":
             with open(self.chosen_save, "w") as file:
-                file.write(str(self.total))
+                file.write(str(total))
 
     def win_bet(self, blackjack=False):
-        # self.total += self.bet if not blackjack else (self.bet * 1.5)
+        global total
+        # total += self.bet if not blackjack else (self.bet * 1.5)
         if blackjack:
-            self.total += self.bet * 1.5
+            total += self.bet * 1.5
         else:
-            self.total += self.bet
+            total += self.bet
 
         self.save_chips()
 
     def lose_bet(self):
+        global total
         mto = ""
-        if (self.total - self.bet) > 1:
+        if (total - self.bet) > 1:
             mto = "s"
-        if (self.total - self.bet) == 0:
+        if (total - self.bet) == 0:
             print("\nYour Out of Chips!\nGiving new chip stack.")
-            self.total = 100
+            total = 100
             self.save_chips()
-        elif (self.total - self.bet) < 10:
+        elif (total - self.bet) < 10:
             print(
-                f"\n{self.total - self.bet} chip{mto} is not enough to continue!\nHere, take some of mine."
+                f"\n{total - self.bet} chip{mto} is not enough to continue!\nHere, take some of mine."
             )
-            self.total = 100
+            total = 100
             self.save_chips()
         else:
-            self.total -= self.bet
+            total -= self.bet
             self.save_chips()
 
 
 def choose_save(chips):
+    global total
     try:
         with open(save_1, "r") as file:
             save1_total = str(int(float(file.read()))) + " Chips"
@@ -176,17 +179,17 @@ def choose_save(chips):
             time.sleep(1.5)
 
     if chips.chosen_save == "debug":
-        chips.total = float("inf")
+        total = float("inf")
     else:
         try:
             with open(chips.chosen_save, "r") as file:
-                chips.total = int(float(file.read()))
+                total = int(float(file.read()))
         except FileNotFoundError:
             print("No save found, creating new save.")
-            chips.total = 100
+            total = 100
         except Exception:
             print("Save not viable, creating new save.\n")
-            chips.total = 100
+            total = 100
 
 
 def take_bet(chips):
@@ -194,14 +197,14 @@ def take_bet(chips):
     while True:
         try:
             chips.bet = int(
-                input(f"How many chips out of {chips.total} would you like to bet? ")
+                input(f"How many chips out of {total} would you like to bet? ")
             )
         except ValueError:
             print("please put in a number, otherwise it wont work.")
         else:
-            if chips.bet > chips.total:
+            if chips.bet > total:
                 print("\n" * 100)
-                print(f"You only have {chips.total} chips not {chips.bet} chips!")
+                print(f"You only have {total} chips not {chips.bet} chips!")
             elif chips.bet == 0:
                 print("\n" * 100)
                 print("You have to bet something!")
@@ -385,7 +388,7 @@ def play():
                 push(player_hand, dealer_hand)
 
         # Inform Player of their chips total
-        print("\nPlayer's chip total stands at", player_chips.total)
+        print("\nPlayer's chip total stands at", total)
 
         # Ask to play again
         if not replay():
