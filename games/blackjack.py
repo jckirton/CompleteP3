@@ -186,9 +186,11 @@ def choose_save(chips):
                 total = int(float(file.read()))
         except FileNotFoundError:
             print("No save found, creating new save.")
+            time.sleep(2)
             total = 100
         except Exception:
             print("Save not viable, creating new save.\n")
+            time.sleep(2)
             total = 100
 
 
