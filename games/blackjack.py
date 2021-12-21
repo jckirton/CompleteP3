@@ -96,6 +96,8 @@ class Chips:
         self.bet = 0
 
     def save_chips(self):
+        global total
+        total = round(total)
         if self.chosen_save != "debug":
             with open(self.chosen_save, "w") as file:
                 file.write(str(total))
@@ -105,6 +107,7 @@ class Chips:
         # total += self.bet if not blackjack else (self.bet * 1.5)
         if blackjack:
             total += self.bet * 1.5
+            total = round(total)
         else:
             total += self.bet
 
@@ -291,11 +294,15 @@ def push(player, dealer):
     print("Dealer and Player tie! It's a push...")
 
 
-def blackjack(player, dealer, chips):
+def blackjack(player, dealer, chips, win=True):
     print("\n" * 100)
     show_all(player, dealer)
-    print("You got a blackjack! 😳")
-    chips.win_bet(blackjack=True)
+    if win:
+        print("You got a blackjack! 😳")
+        chips.win_bet(blackjack=True)
+    else:
+        print("The dealer got a blackjack! 😰")
+        chips.lose_bet()
 
 
 def replay():
@@ -346,11 +353,18 @@ def play():
         # Prompt the Player for their bet
         take_bet(player_chips)
         # player_hand.value = 21
+        # dealer_hand.value = 21
         # Show cards (but keep one dealer card hidden)
         show_some(player_hand, dealer_hand)
 
-        if player_hand.value == 21:
+        if player_hand.value == 21 and dealer_hand.value == 21:
+            push(player_hand, dealer_hand)
+            black_jack = True
+        elif player_hand.value == 21:
             blackjack(player_hand, dealer_hand, player_chips)
+            black_jack = True
+        elif dealer_hand.value == 21:
+            blackjack(player_hand, dealer_hand, player_chips, win=False)
             black_jack = True
 
         # PLAYERS TURN
