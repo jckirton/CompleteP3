@@ -40,7 +40,7 @@ def player_input():
     marker = ""
 
     while marker != "X" and marker != "O":
-        marker = input("Player 1 plz choose X or O: ").upper()
+        marker = input("Player 1 please choose X or O: ").upper()
 
         player1 = (f"{tc.red}{marker}{tc.regular}", 1)
 
@@ -137,9 +137,9 @@ def player_choice(board, player):
             if space_check(board, position):
                 return position
         except ValueError:
-            print("plz choose a number")
+            print("please choose a number")
         except IndexError:
-            print("plz choose only 1-9")
+            print("please choose only 1-9")
 
 
 def replay():
