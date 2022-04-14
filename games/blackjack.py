@@ -342,10 +342,12 @@ def play():
         player_hand = Hand()
         player_hand.add_card(deck.deal())
         player_hand.add_card(deck.deal())
+        player_hand.adjust_for_ace()
 
         dealer_hand = Hand()
         dealer_hand.add_card(deck.deal())
         dealer_hand.add_card(deck.deal())
+        dealer_hand.adjust_for_ace()
 
         # Set up the Player's chips
         player_chips = Chips()  # remember the default value is 100
