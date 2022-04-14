@@ -3,7 +3,6 @@ Creates a playable tic tac toe game.
 """
 import random
 import time
-from funcs import TerminalColors
 
 
 def display_board(board):
