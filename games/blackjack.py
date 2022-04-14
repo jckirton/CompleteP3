@@ -97,8 +97,8 @@ class Chips:
 
     def save_chips(self):
         global total
-        total = round(total)
         if self.chosen_save != "debug":
+        	total = round(total)
             with open(self.chosen_save, "w") as file:
                 file.write(str(total))
 
