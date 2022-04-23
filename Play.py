@@ -2,13 +2,15 @@ from games import tic_tac_toe, blackjack, num_guess, num_guess_V2
 import time
 from funcs import TerminalColors
 
+tc = TerminalColors()
+
 
 while True:
-    print("\n" * 100)
+    print(f"{tc.regular}\n" * 100)
     game = input(
-        "Which game would you like to play?\n\n1: Tic Tac Toe\n2: Blackjack\n3: Number Guess V1\n4: Number Guess V2\n\n"
+        f"Which game would you like to play?\n\n{tc.green}1: Tic Tac Toe\n{tc.magenta}2: Blackjack\n{tc.red}3: Number Guess V1\n{tc.cyan}4: Number Guess V2{tc.regular}\n\n"
     )
-    print("")
+    print(f"{tc.regular}")
     if game == "1":
         tic_tac_toe.play()
     elif game == "2":
