@@ -134,12 +134,24 @@ def player_choice(board, player):
     while position not in [1 - 9]:
         try:
             position = int(input(f"Player {player[1]} choose a position from 1-9: "))
+            if position == 0:
+                print("Please choose only 1-9")
+                time.sleep(1.5)
+                print("\n" * 100)
+                display_board(board)
+                continue
             if space_check(board, position):
                 return position
         except ValueError:
-            print("please choose a number")
+            print("Please choose a number")
+            time.sleep(1.5)
+            print("\n" * 100)
+            display_board(board)
         except IndexError:
-            print("please choose only 1-9")
+            print("Please choose only 1-9")
+            time.sleep(1.5)
+            print("\n" * 100)
+            display_board(board)
 
 
 def replay():
