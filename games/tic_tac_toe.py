@@ -232,7 +232,7 @@ def play():
                 print("Player 2 wins!!!")
                 break
             if full_board_check(board):
-                print("the board is full. nobody won.")
+                print("The board is full, nobody won.")
                 break
 
         if not replay():
