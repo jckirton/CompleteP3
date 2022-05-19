@@ -378,7 +378,7 @@ def play():
                 if forced_dhand_value == "":
                     forced_dhand_value = dealer_hand.value
                 modifications = input(
-                    "Are there any modifications you would like to make to this game?\n\n1: Force Blackjack\n2: Set Player Hand Value\n3: Set Dealer Hand Value\nPress enter to exit.\n"
+                    "Are there any modifications you would like to make to this game?\n\n1: Force Blackjack\n2: Set Player Hand Value\n3: Set Dealer Hand Value\nType 'Reset' to reset all changes.\nPress enter to exit.\n"
                 )
 
                 if modifications == "1":
@@ -424,14 +424,14 @@ def play():
                         print("\n" * 100)
                         print(f"The dealer hand's value is now {forced_dhand_value}.")
                         time.sleep(2)
-                else:
+                elif modifications == "":
                     print("\n" * 100)
                     if (
                         forced_phand_value != player_hand.value
                         or forced_dhand_value != dealer_hand.value
                     ):
                         start = input(
-                            f"Here is what you changed:\n\nPlayer Hand Value: {forced_phand_value}\nDealer Hand Value: {forced_dhand_value}\nDo you wish to continue?\n"
+                            f"Here is what things are now:\n  - Player Hand Value: {forced_phand_value}\n  - Dealer Hand Value: {forced_dhand_value}\n\nDo you wish to continue?\n"
                         ).lower()
                         if start in "yes":
                             player_hand.value = int(forced_phand_value)
@@ -445,6 +445,12 @@ def play():
                         print("\n" * 100)
                         customising = False
                         break
+                elif modifications.lower() in "reset":
+                    print("\n" * 100)
+                    forced_phand_value = player_hand.value
+                    forced_dhand_value = dealer_hand.value
+                    print("All changes have been reset.")
+                    time.sleep(2)
 
         take_bet(player_chips)
         # Show cards (but keep one dealer card hidden)
