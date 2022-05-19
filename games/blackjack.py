@@ -431,7 +431,7 @@ def play():
                         or forced_dhand_value != dealer_hand.value
                     ):
                         start = input(
-                            f"Here is what things are now:\n  - Player Hand Value: {forced_phand_value}\n  - Dealer Hand Value: {forced_dhand_value}\n\nDo you wish to continue?\n"
+                            f"Here is what things are now:\n\n  - Player Hand Value: {forced_phand_value}\n  - Dealer Hand Value: {forced_dhand_value}\n\nDo you wish to continue?\n"
                         ).lower()
                         if start in "yes":
                             player_hand.value = int(forced_phand_value)
