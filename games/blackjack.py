@@ -106,7 +106,7 @@ class Chips:
     def win_bet(self, blackjack=False):
         global total
         # total += self.bet if not blackjack else (self.bet * 1.5)
-        if blackjack:
+        if blackjack and self.chosen_save != "debug":
             total += self.bet * 1.5
             total = round(total)
         else:
@@ -206,10 +206,10 @@ def take_bet(chips):
 
     while True:
         chips.bet = input(
-            f"How many chips out of {total} would you like to bet?\nType 'Back' to go back.\n"
+            f"\nHow many chips out of {total} would you like to bet?\nType 'Back' to go back.\n"
         )
 
-        if chips.bet.lower() in "back":
+        if chips.bet.lower() in "back" and chips.chosen_save != "debug":
             choose_save(chips)
         else:
             try:
@@ -391,12 +391,12 @@ def play():
                         forced_phand_value = 21
                         print("Player hand now has a blackjack.")
                         time.sleep(2)
-                    if what_hand == "2":
+                    elif what_hand == "2":
                         print("\n" * 100)
                         forced_dhand_value = 21
                         print("Dealer hand now has a blackjack.")
                         time.sleep(2)
-                    if what_hand == "3":
+                    elif what_hand == "3":
                         print("\n" * 100)
                         forced_phand_value = 21
                         forced_dhand_value = 21
@@ -406,22 +406,20 @@ def play():
                         pass
                 elif modifications == "2":
                     print("\n" * 100)
-                    forced_phand_value = int(
-                        input(
-                            "What should the player hand's value be?\nPress enter to return.\n"
-                        )
+                    forced_phand_value = input(
+                        "What should the player hand's value be?\nPress enter to return.\n"
                     )
+
                     if forced_phand_value != "":
                         print("\n" * 100)
                         print(f"The player hand's value is now {forced_phand_value}.")
                         time.sleep(2)
                 elif modifications == "3":
                     print("\n" * 100)
-                    forced_dhand_value = int(
-                        input(
-                            "What should the dealer hand's value be?\nPress enter to return.\n"
-                        )
+                    forced_dhand_value = input(
+                        "What should the dealer hand's value be?\nPress enter to return.\n"
                     )
+
                     if forced_dhand_value != "":
                         print("\n" * 100)
                         print(f"The dealer hand's value is now {forced_dhand_value}.")
@@ -430,14 +428,14 @@ def play():
                     print("\n" * 100)
                     if (
                         forced_phand_value != player_hand.value
-                        and forced_dhand_value != dealer_hand.value
+                        or forced_dhand_value != dealer_hand.value
                     ):
                         start = input(
                             f"Here is what you changed:\n\nPlayer Hand Value: {forced_phand_value}\nDealer Hand Value: {forced_dhand_value}\nDo you wish to continue?\n"
                         ).lower()
                         if start in "yes":
-                            player_hand.value = forced_phand_value
-                            dealer_hand.value = forced_dhand_value
+                            player_hand.value = int(forced_phand_value)
+                            dealer_hand.value = int(forced_dhand_value)
                             print("\n" * 100)
                             customising = False
                             break
