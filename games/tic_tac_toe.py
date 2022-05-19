@@ -3,7 +3,6 @@ Creates a playable tic tac toe game.
 """
 import random
 import time
-from funcs import TerminalColors
 
 
 def display_board(board):
@@ -204,7 +203,7 @@ def play():
                 print("Player 1 wins!!!")
                 break
             if full_board_check(board):
-                print("the board is full. Nobody won.")
+                print("The board is full, nobody won.")
                 break
             marker = player2[0]
             position = player_choice(board, player2)
