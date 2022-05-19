@@ -168,15 +168,19 @@ def choose_save(chips):
 
         if save == "1":
             chips.chosen_save = save_1
+            print("\n" * 100)
             break
         elif save == "2":
             chips.chosen_save = save_2
+            print("\n" * 100)
             break
         elif save == "3":
             chips.chosen_save = save_3
+            print("\n" * 100)
             break
         elif save.lower() == "debug":
             chips.chosen_save = "debug"
+            print("\n" * 100)
             break
         else:
             print("Please choose one of the three saves.")
@@ -201,27 +205,34 @@ def choose_save(chips):
 def take_bet(chips):
 
     while True:
-        try:
-            chips.bet = int(
-                input(f"How many chips out of {total} would you like to bet? ")
-            )
-        except ValueError:
-            print("please put in a number, otherwise it wont work.")
+        chips.bet = input(
+            f"How many chips out of {total} would you like to bet?\nType 'Back' to go back.\n"
+        )
+
+        if chips.bet.lower() in "back":
+            choose_save(chips)
         else:
-            if chips.bet > total:
-                print("\n" * 100)
-                print(f"You only have {total} chips not {chips.bet} chips!")
-            elif chips.bet == 0:
-                print("\n" * 100)
-                print("You have to bet something!")
-            elif chips.bet < 0:
-                print("\n" * 100)
-                print("You can't bet less then nothing!\nThat makes no logical sense!")
-            elif chips.bet < 10:
-                print("\n" * 100)
-                print("You have to bet more than that!")
+            try:
+                chips.bet = int(chips.bet)
+            except ValueError:
+                print("Please put in a number, otherwise it wont work.")
             else:
-                break
+                if chips.bet > total:
+                    print("\n" * 100)
+                    print(f"You only have {total} chips not {chips.bet} chips!")
+                elif chips.bet == 0:
+                    print("\n" * 100)
+                    print("You have to bet something!")
+                elif chips.bet < 0:
+                    print("\n" * 100)
+                    print(
+                        "You can't bet less then nothing!\nThat makes no logical sense!"
+                    )
+                elif chips.bet < 10:
+                    print("\n" * 100)
+                    print("You have to bet more than that!")
+                else:
+                    break
 
 
 def hit(deck, hand):
@@ -336,6 +347,7 @@ def play():
         global game_on
         game_on = True
         black_jack = False
+        customising = False
         # Create & shuffle the deck, deal two cards to each player
         deck = Deck()
         deck.shuffle()
@@ -354,9 +366,89 @@ def play():
         player_chips = Chips()  # remember the default value is 100
 
         # Prompt the Player for their bet
+        if player_chips.chosen_save == "debug":
+            customising = True
+            what_hand = ""
+            forced_phand_value = player_hand.value
+            forced_dhand_value = dealer_hand.value
+            while customising:
+                print("\n" * 100)
+                if forced_phand_value == "":
+                    forced_phand_value = player_hand.value
+                if forced_dhand_value == "":
+                    forced_dhand_value = dealer_hand.value
+                modifications = input(
+                    "Are there any modifications you would like to make to this game?\n\n1: Force Blackjack\n2: Set Player Hand Value\n3: Set Dealer Hand Value\nPress enter to exit.\n"
+                )
+
+                if modifications == "1":
+                    print("\n" * 100)
+                    what_hand = input(
+                        "Which hand?\n\n1: Player Hand\n2: Dealer Hand\n3: Both\nPress enter to return.\n"
+                    )
+                    if what_hand == "1":
+                        print("\n" * 100)
+                        forced_phand_value = 21
+                        print("Player hand now has a blackjack.")
+                        time.sleep(2)
+                    if what_hand == "2":
+                        print("\n" * 100)
+                        forced_dhand_value = 21
+                        print("Dealer hand now has a blackjack.")
+                        time.sleep(2)
+                    if what_hand == "3":
+                        print("\n" * 100)
+                        forced_phand_value = 21
+                        forced_dhand_value = 21
+                        print("Both hands now have a blackjack.")
+                        time.sleep(2)
+                    else:
+                        pass
+                elif modifications == "2":
+                    print("\n" * 100)
+                    forced_phand_value = int(
+                        input(
+                            "What should the player hand's value be?\nPress enter to return.\n"
+                        )
+                    )
+                    if forced_phand_value != "":
+                        print("\n" * 100)
+                        print(f"The player hand's value is now {forced_phand_value}.")
+                        time.sleep(2)
+                elif modifications == "3":
+                    print("\n" * 100)
+                    forced_dhand_value = int(
+                        input(
+                            "What should the dealer hand's value be?\nPress enter to return.\n"
+                        )
+                    )
+                    if forced_dhand_value != "":
+                        print("\n" * 100)
+                        print(f"The dealer hand's value is now {forced_dhand_value}.")
+                        time.sleep(2)
+                else:
+                    print("\n" * 100)
+                    if (
+                        forced_phand_value != player_hand.value
+                        and forced_dhand_value != dealer_hand.value
+                    ):
+                        start = input(
+                            f"Here is what you changed:\n\nPlayer Hand Value: {forced_phand_value}\nDealer Hand Value: {forced_dhand_value}\nDo you wish to continue?\n"
+                        ).lower()
+                        if start in "yes":
+                            player_hand.value = forced_phand_value
+                            dealer_hand.value = forced_dhand_value
+                            print("\n" * 100)
+                            customising = False
+                            break
+                        else:
+                            pass
+                    else:
+                        print("\n" * 100)
+                        customising = False
+                        break
+
         take_bet(player_chips)
-        # player_hand.value = 21
-        # dealer_hand.value = 21
         # Show cards (but keep one dealer card hidden)
         show_some(player_hand, dealer_hand)
 
