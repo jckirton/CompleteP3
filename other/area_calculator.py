@@ -83,7 +83,7 @@ elif shape == "4":
         f"Please enter the length of one of the sides, and the amount of significant digits to round to, with no input meaning no rounding.\nFormat: a sig_digits\n"
     ).split()
     if len(dimensions) > 1:
-        calculate("hexagon", float(dimensions[0]), None, float(dimensions[1]))
+        calculate("hexagon", float(dimensions[0]), None, int(dimensions[1]))
     else:
         calculate("hexagon", float(dimensions[0]), None)
     print("\n" * 100)
