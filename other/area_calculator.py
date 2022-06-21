@@ -37,12 +37,19 @@ if shape == "1":
     dimensions = input(
         "Please enter your x and y demensions, and the amount of significant digits to round to, with no input meaning no rounding.\nFormat: x y sig_digits\n"
     ).split()
-    if len(dimensions) > 2:
-        calculate(
-            "square", float(dimensions[0]), float(dimensions[1]), int(dimensions[2])
-        )
+    numbers = []
+    for n in dimensions:
+        if len((n.split("/"))) == 2:
+            numbers.append((float(n.split("/")[0]) / float(n.split("/")[1])))
+        else:
+            if (float(n.split("/")[0]) % 1) == 0:
+                numbers.append(int(n.split("/")[0]))
+            else:
+                numbers.append(float(n.split("/")[0]))
+    if len(numbers) > 2:
+        calculate("square", float(numbers[0]), float(numbers[1]), int(numbers[2]))
     else:
-        calculate("square", float(dimensions[0]), float(dimensions[1]))
+        calculate("square", float(numbers[0]), float(numbers[1]))
     print("\n" * 100)
     print(area)
 elif shape == "2":
@@ -50,12 +57,19 @@ elif shape == "2":
     dimensions = input(
         "Please enter your base and height demensions, and the amount of significant digits to round to, with no input meaning no rounding.\nFormat: b h sig_digits\n"
     ).split()
-    if len(dimensions) > 2:
-        calculate(
-            "triangle", float(dimensions[0]), float(dimensions[1]), int(dimensions[2])
-        )
+    numbers = []
+    for n in dimensions:
+        if len((n.split("/"))) == 2:
+            numbers.append((float(n.split("/")[0]) / float(n.split("/")[1])))
+        else:
+            if (float(n.split("/")[0]) % 1) == 0:
+                numbers.append(int(n.split("/")[0]))
+            else:
+                numbers.append(float(n.split("/")[0]))
+    if len(numbers) > 2:
+        calculate("triangle", float(numbers[0]), float(numbers[1]), int(numbers[2]))
     else:
-        calculate("triangle", float(dimensions[0]), float(dimensions[1]))
+        calculate("triangle", float(numbers[0]), float(numbers[1]))
     print("\n" * 100)
     print(area)
 elif shape == "3":
@@ -63,17 +77,26 @@ elif shape == "3":
     dimensions = input(
         f"Please enter your base and height demensions, and the amount of significant digits to round to, with no input meaning no rounding.\nFormat: b₁ b₂ h sig_digits\n"
     ).split()
-    if len(dimensions) > 3:
+    numbers = []
+    for n in dimensions:
+        if len((n.split("/"))) == 2:
+            numbers.append((float(n.split("/")[0]) / float(n.split("/")[1])))
+        else:
+            if (float(n.split("/")[0]) % 1) == 0:
+                numbers.append(int(n.split("/")[0]))
+            else:
+                numbers.append(float(n.split("/")[0]))
+    if len(numbers) > 3:
         calculate(
             "trapezoid",
-            [float(dimensions[0]), float(dimensions[1])],
-            float(dimensions[2], int(dimensions[3])),
+            [float(numbers[0]), float(numbers[1])],
+            float(numbers[2], int(numbers[3])),
         )
     else:
         calculate(
             "trapezoid",
-            [float(dimensions[0]), float(dimensions[1])],
-            float(dimensions[2]),
+            [float(numbers[0]), float(numbers[1])],
+            float(numbers[2]),
         )
     print("\n" * 100)
     print(area)
@@ -82,9 +105,18 @@ elif shape == "4":
     dimensions = input(
         f"Please enter the length of one of the sides, and the amount of significant digits to round to, with no input meaning no rounding.\nFormat: a sig_digits\n"
     ).split()
-    if len(dimensions) > 1:
-        calculate("hexagon", float(dimensions[0]), None, int(dimensions[1]))
+    numbers = []
+    for n in dimensions:
+        if len((n.split("/"))) == 2:
+            numbers.append((float(n.split("/")[0]) / float(n.split("/")[1])))
+        else:
+            if (float(n.split("/")[0]) % 1) == 0:
+                numbers.append(int(n.split("/")[0]))
+            else:
+                numbers.append(float(n.split("/")[0]))
+    if len(numbers) > 1:
+        calculate("hexagon", float(numbers[0]), None, int(numbers[1]))
     else:
-        calculate("hexagon", float(dimensions[0]), None)
+        calculate("hexagon", float(numbers[0]), None)
     print("\n" * 100)
     print(area)
