@@ -1,12 +1,12 @@
 import time
 
 print("\n" * 100)
-hi = int(input("How long is this countdown?\n"))
+length = int(input("How long is this countdown?\n"))
 
-while hi:
+while length:
     print("\n" * 100)
-    print(hi)
+    print(length)
     time.sleep(1)
-    hi -= 1
+    length -= 1
 print("\n" * 100)
 print("Blastoff!!!")
