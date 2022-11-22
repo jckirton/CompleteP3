@@ -9,48 +9,82 @@ from funcs import TerminalColors
 tc = TerminalColors()
 
 
-def display_board(board):
+def display_board(board, color):
     """
     Creates and displays a tic tac toe board.
     """
-    print("\n" * 100)
-    print(
-        f"{tc.grey}7{tc.regular}    |{tc.grey}8{tc.regular}    |{tc.grey}9{tc.regular}   "
-    )
-    print("  " + board[7] + "  |  " + board[8] + "  |  " + board[9] + " ")
-    print("     |     |    ")
-    print("-----|-----|-----")
-    print(
-        f"{tc.grey}4{tc.regular}    |{tc.grey}5{tc.regular}    |{tc.grey}6{tc.regular}  "
-    )
-    print("  " + board[4] + "  |  " + board[5] + "  |  " + board[6] + " ")
-    print("     |     |    ")
-    print("-----|-----|-----")
-    print(
-        f"{tc.grey}1{tc.regular}    |{tc.grey}2{tc.regular}    |{tc.grey}3{tc.regular}  "
-    )
-    print("  " + board[1] + "  |  " + board[2] + "  |  " + board[3] + " ")
-    print("     |     |    ")
+    if color:
+        print("\n" * 100)
+        print(
+            f"{tc.grey}7{tc.regular}    |{tc.grey}8{tc.regular}    |{tc.grey}9{tc.regular}   "
+        )
+        print("  " + board[7] + "  |  " + board[8] + "  |  " + board[9] + " ")
+        print("     |     |    ")
+        print("-----|-----|-----")
+        print(
+            f"{tc.grey}4{tc.regular}    |{tc.grey}5{tc.regular}    |{tc.grey}6{tc.regular}  "
+        )
+        print("  " + board[4] + "  |  " + board[5] + "  |  " + board[6] + " ")
+        print("     |     |    ")
+        print("-----|-----|-----")
+        print(
+            f"{tc.grey}1{tc.regular}    |{tc.grey}2{tc.regular}    |{tc.grey}3{tc.regular}  "
+        )
+        print("  " + board[1] + "  |  " + board[2] + "  |  " + board[3] + " ")
+        print("     |     |    ")
+    else:
+        print("\n" * 100)
+        print(
+            "7    |8    |9   "
+        )
+        print("  " + board[7] + "  |  " + board[8] + "  |  " + board[9] + " ")
+        print("     |     |    ")
+        print("-----|-----|-----")
+        print(
+            "4    |5    |6  "
+        )
+        print("  " + board[4] + "  |  " + board[5] + "  |  " + board[6] + " ")
+        print("     |     |    ")
+        print("-----|-----|-----")
+        print(
+            "1    |2    |3  "
+        )
+        print("  " + board[1] + "  |  " + board[2] + "  |  " + board[3] + " ")
+        print("     |     |    ")
 
 
-def player_input():
+def player_input(color):
     """
     Allows player 1 to choose wether to have X or O as their piece on the board.
     """
     marker = ""
-
-    while marker != "X" and marker != "O":
-        marker = input("Player 1 please choose X or O: ").upper()
-
-        player1 = (f"{tc.red}{marker}{tc.regular}", 1)
-
-        if "X" in player1[0]:
-            player2 = (f"{tc.cyan}O{tc.regular}", 2)
-        else:
-            player2 = (f"{tc.cyan}X{tc.regular}", 2)
-
-    print(f"Player 1 is {player1[0]} and Player 2 is {player2[0]}")
-    return player1, player2
+    
+    if color:
+        while marker != "X" and marker != "O":
+            marker = input("Player 1 please choose X or O: ").upper()
+    
+            player1 = (f"{tc.red}{marker}{tc.regular}", 1)
+    
+            if "X" in player1[0]:
+                player2 = (f"{tc.cyan}O{tc.regular}", 2)
+            else:
+                player2 = (f"{tc.cyan}X{tc.regular}", 2)
+    
+        print(f"Player 1 is {player1[0]} and Player 2 is {player2[0]}")
+        return player1, player2
+    else:
+        while marker != "X" and marker != "O":
+            marker = input("Player 1 please choose X or O: ").upper()
+    
+            player1 = (f"{marker}", 1)
+    
+            if "X" in player1[0]:
+                player2 = ("O", 2)
+            else:
+                player2 = ("X", 2)
+    
+        print(f"Player 1 is {player1[0]} and Player 2 is {player2[0]}")
+        return player1, player2
 
 
 def place_marker(board, marker, position):
@@ -154,6 +188,31 @@ def player_choice(board, player):
             display_board(board)
 
 
+def use_color(color):
+    """
+    Asks the user if they want color in their game.
+    """
+    while color == None:
+        print("\n"*100)
+        ask_user = input(
+        "Do you want the game to have colors?\n(Not all devices may support color and things may look weird if you say yes.)\n").lower()
+        if ask_user in "no":
+            print("\n"*100)
+            print("The game will not use color.")
+            time.sleep(1.5)
+            color = False
+        elif ask_user in "yes":
+            print("\n"*100)
+            print("The game will use color.")
+            time.sleep(1.5)
+            color = True
+        else:
+            print("Please say either yes or no.")
+            time.sleep(1.5)
+            print("\n"*100)
+    return color
+
+
 def replay():
     """
     Restarts the game.
@@ -189,6 +248,8 @@ def play():
     Starts the tic tac toe game.
     """
     while True:
+        color = None
+        color = use_color(color)
         print("\n" * 100)
         print("Welcome to tic tac toe!")
         print("A production by Ben and son, a coding family.")
@@ -199,7 +260,7 @@ def play():
         # for index in range(1, 10):
         #     board.append(str(index))
 
-        player1, player2 = player_input()
+        player1, player2 = player_input(color)
 
         game_on = True
 
@@ -208,31 +269,31 @@ def play():
         while game_on:
 
             marker = player1[0]
-            display_board(board)
+            display_board(board, color)
             position = player_choice(board, player1)
 
             if space_check(board, position):
                 place_marker(board, marker, position)
-            display_board(board)
+            display_board(board, color)
 
             if win_check(board, marker):
-                print("Player 1 wins!!!")
+                print("Player 1 wins!")
                 break
             if full_board_check(board):
-                print("the board is full. Nobody won.")
+                print("The board is full. Nobody won.")
                 break
             marker = player2[0]
             position = player_choice(board, player2)
 
             if space_check(board, position):
                 place_marker(board, marker, position)
-            display_board(board)
+            display_board(board, color)
 
             if win_check(board, marker):
-                print("Player 2 wins!!!")
+                print("Player 2 wins!")
                 break
             if full_board_check(board):
-                print("The board is full, nobody won.")
+                print("The board is full. Nobody won.")
                 break
 
         if not replay():
