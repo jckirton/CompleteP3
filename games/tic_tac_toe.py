@@ -34,21 +34,15 @@ def display_board(board, color):
         print("     |     |    ")
     else:
         print("\n" * 100)
-        print(
-            "7    |8    |9   "
-        )
+        print("7    |8    |9   ")
         print("  " + board[7] + "  |  " + board[8] + "  |  " + board[9] + " ")
         print("     |     |    ")
         print("-----|-----|-----")
-        print(
-            "4    |5    |6  "
-        )
+        print("4    |5    |6  ")
         print("  " + board[4] + "  |  " + board[5] + "  |  " + board[6] + " ")
         print("     |     |    ")
         print("-----|-----|-----")
-        print(
-            "1    |2    |3  "
-        )
+        print("1    |2    |3  ")
         print("  " + board[1] + "  |  " + board[2] + "  |  " + board[3] + " ")
         print("     |     |    ")
 
@@ -58,31 +52,31 @@ def player_input(color):
     Allows player 1 to choose wether to have X or O as their piece on the board.
     """
     marker = ""
-    
+
     if color:
         while marker != "X" and marker != "O":
             marker = input("Player 1 please choose X or O: ").upper()
-    
+
             player1 = (f"{tc.red}{marker}{tc.regular}", 1)
-    
+
             if "X" in player1[0]:
                 player2 = (f"{tc.cyan}O{tc.regular}", 2)
             else:
                 player2 = (f"{tc.cyan}X{tc.regular}", 2)
-    
+
         print(f"Player 1 is {player1[0]} and Player 2 is {player2[0]}")
         return player1, player2
     else:
         while marker != "X" and marker != "O":
             marker = input("Player 1 please choose X or O: ").upper()
-    
+
             player1 = (f"{marker}", 1)
-    
+
             if "X" in player1[0]:
                 player2 = ("O", 2)
             else:
                 player2 = ("X", 2)
-    
+
         print(f"Player 1 is {player1[0]} and Player 2 is {player2[0]}")
         return player1, player2
 
@@ -160,7 +154,7 @@ def full_board_check(board):
     return True
 
 
-def player_choice(board, player):
+def player_choice(board, player, color):
     """
     Asks the player where they would like to place there marker.
     """
@@ -172,7 +166,7 @@ def player_choice(board, player):
                 print("Please choose only 1-9")
                 time.sleep(1.5)
                 print("\n" * 100)
-                display_board(board)
+                display_board(board, color)
                 continue
             if space_check(board, position):
                 return position
@@ -180,12 +174,12 @@ def player_choice(board, player):
             print("Please choose a number")
             time.sleep(1.5)
             print("\n" * 100)
-            display_board(board)
+            display_board(board, color)
         except IndexError:
             print("Please choose only 1-9")
             time.sleep(1.5)
             print("\n" * 100)
-            display_board(board)
+            display_board(board, color)
 
 
 def use_color(color):
@@ -193,23 +187,24 @@ def use_color(color):
     Asks the user if they want color in their game.
     """
     while color == None:
-        print("\n"*100)
+        print("\n" * 100)
         ask_user = input(
-        "Do you want the game to have colors?\n(Not all devices may support color and things may look weird if you say yes.)\n").lower()
+            "Do you want the game to have colors?\n(Not all devices may support color and things may look weird if you say yes.)\n"
+        ).lower()
         if ask_user in "no":
-            print("\n"*100)
+            print("\n" * 100)
             print("The game will not use color.")
             time.sleep(1.5)
             color = False
         elif ask_user in "yes":
-            print("\n"*100)
+            print("\n" * 100)
             print("The game will use color.")
             time.sleep(1.5)
             color = True
         else:
             print("Please say either yes or no.")
             time.sleep(1.5)
-            print("\n"*100)
+            print("\n" * 100)
     return color
 
 
@@ -270,7 +265,7 @@ def play():
 
             marker = player1[0]
             display_board(board, color)
-            position = player_choice(board, player1)
+            position = player_choice(board, player1, color)
 
             if space_check(board, position):
                 place_marker(board, marker, position)
@@ -283,7 +278,7 @@ def play():
                 print("The board is full. Nobody won.")
                 break
             marker = player2[0]
-            position = player_choice(board, player2)
+            position = player_choice(board, player2, color)
 
             if space_check(board, position):
                 place_marker(board, marker, position)

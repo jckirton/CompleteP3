@@ -163,7 +163,7 @@ def choose_save(chips):
     while True:
         print("\n" * 100)
         save = input(
-            f"Which save would you like to use?\n1: {save1_total}\n2: {save2_total}\n3: {save3_total}\n"
+            f"Which save would you like to use?\n1: {save1_total}\n2: {save2_total}\n3: {save3_total}\n\n"
         )
 
         if save == "1":
@@ -206,7 +206,7 @@ def take_bet(chips):
 
     while True:
         chips.bet = input(
-            f"\nHow many chips out of {total} would you like to bet?\nType 'Back' to go back.\n"
+            f"\nHow many chips out of {total} would you like to bet?\nType 'Back' to go back.\n\n"
         )
 
         if chips.bet.lower() in "back" and chips.chosen_save != "debug":

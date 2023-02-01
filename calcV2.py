@@ -1,6 +1,6 @@
 mthinput = input("")
 mthinput = mthinput.split(" ")
-mthinput.remove("")
+# mthinput.remove("")
 action = mthinput[0].lower()
 numbers = mthinput[1:]
 
