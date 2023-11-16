@@ -136,7 +136,7 @@ def space_check(board, position):
     """
     Checks if the space that the player is trying to put his or her marker is free.
     """
-    if "X" not in board[position] and "O" not in board[position]:
+    if "X" not in board[position] and "O" not in board[position] and "#" not in board[position]:
         return True
     else:
         print("Space taken. Choose another")
