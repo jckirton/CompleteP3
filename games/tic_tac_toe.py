@@ -82,18 +82,6 @@ def win_check(board, mark):
         return False
 
 
-def choose_first():
-    """
-    Chooses which player goes first.
-    """
-    if random.randint(0, 1):
-        return True
-    else:
-        return False
-
-    # return True if random.randint(0, 1) else False
-
-
 def space_check(board, position):
     """
     Checks if the space that the player is trying to put his or her marker is free.
