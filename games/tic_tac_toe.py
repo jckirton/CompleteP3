@@ -32,16 +32,16 @@ def player_input():
     while marker != "X" and marker != "O":
         marker = input("Player 1 please choose X or O: ").upper()
 
-        player1 = marker
+        player1 = (f"{marker}", 1)
 
-        if player1 == "X":
-            player2 = "O"
-        elif player1 == "O":
-            player2 = "X"
+        if player1[0] == "X":
+            player2 = ("O", 2)
+        elif player1[0] == "O":
+            player2 = ("X", 2)
         else:
             print("\n" * 100)
 
-    print(f"Player 1 is {player1} and Player 2 is {player2}.")
+    print(f"Player 1 is {player1[0]} and Player 2 is {player2[0]}")
     return player1, player2
 
 
@@ -91,6 +91,7 @@ def space_check(board, position):
     if (
         "X" not in board[position]
         and "O" not in board[position]
+        and "#" not in board[position]
     ):
         return True
     else:
@@ -198,7 +199,7 @@ def play():
         loading()
 
         while game_on:
-            marker = player1
+            marker = player1[0]
             display_board(
                 board,
             )
@@ -219,7 +220,7 @@ def play():
             if full_board_check(board):
                 print("The board is full. Nobody won.")
                 break
-            marker = player2
+            marker = player2[0]
             position = player_choice(
                 board,
                 player2,
