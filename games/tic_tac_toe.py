@@ -25,7 +25,7 @@ def display_board(board):
 
 def player_input():
     """
-    Allows player 1 to choose wether to have X or O as their piece on the board.
+    Allows player 1 to choose whether to have X or O as their piece on the board.
     """
     marker = ""
 
