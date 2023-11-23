@@ -34,10 +34,12 @@ def player_input():
 
         player1 = (f"{marker}", 1)
 
-        if "X" in player1[0]:
+        if player1[0] == "X":
             player2 = ("O", 2)
-        else:
+        elif player1[0] == "O":
             player2 = ("X", 2)
+        else:
+            print("\n" * 100)
 
     print(f"Player 1 is {player1[0]} and Player 2 is {player2[0]}")
     return player1, player2
