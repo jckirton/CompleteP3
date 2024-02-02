@@ -25,7 +25,7 @@ def display_board(board):
 
 def player_input():
     """
-    Allows player 1 to choose wether to have X or O as their piece on the board.
+    Allows player 1 to choose whether to have X or O as their piece on the board.
     """
     marker = ""
 
@@ -34,10 +34,12 @@ def player_input():
 
         player1 = (f"{marker}", 1)
 
-        if "X" in player1[0]:
+        if player1[0] == "X":
             player2 = ("O", 2)
-        else:
+        elif player1[0] == "O":
             player2 = ("X", 2)
+        else:
+            print("\n" * 100)
 
     print(f"Player 1 is {player1[0]} and Player 2 is {player2[0]}")
     return player1, player2
@@ -80,18 +82,6 @@ def win_check(board, mark):
 
     else:
         return False
-
-
-def choose_first():
-    """
-    Chooses which player goes first.
-    """
-    if random.randint(0, 1):
-        return True
-    else:
-        return False
-
-    # return True if random.randint(0, 1) else False
 
 
 def space_check(board, position):
