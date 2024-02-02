@@ -110,7 +110,7 @@ def save_editor(save_1, save_2, save_3):
             print("Please choose one of the three saves.")
             time.sleep(1.5)
 
-        if chosen == True and chosen_save != "exit":
+        if chosen is True and chosen_save != "exit":
             if chosen_save == save_1:
                 with open(chosen_save, "w") as file:
                     edit_to = input(
