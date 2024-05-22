@@ -78,3 +78,29 @@ def func_breaker(og_func):
         else:
             print("Yes or no?")
             time.sleep(1.5)
+
+
+def randomPointGen(
+    min: int, max: int, count: int, *, dimensions: int = 2
+) -> list[list[int]]:
+    import random
+
+    out = []
+
+    tempMin = min
+    tempMax = max
+
+    if tempMin > tempMax:
+        min = tempMax
+        max = tempMin
+
+    for _ in range(count):
+        coord = []
+        while coord in out or not coord:
+            coord = []
+            for _ in range(dimensions):
+                coord.append(random.randint(min, max))
+            # coord = (random.randint(min, max), random.randint(min, max))
+        out.append(coord)
+
+    return out

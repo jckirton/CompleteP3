@@ -17,9 +17,9 @@ class RANKS(AutoName):
 class Entity:
     def __init__(
         self,
-        name: (str),
-        prey: (list | None) = None,
-        decomposer: (bool) = False,
+        name: str,
+        prey: list | None = None,
+        decomposer: bool = False,
     ):
         self.name = name
         self.predator = []
@@ -53,7 +53,7 @@ class Entity:
 
     def __str__(self):
         return f"I am {self.name}, of rank {self.rank.value}{', and an apex predator' if self.apex else ''}.\nI eat {'nothing' if not self.prey else ', '.join(f'{thing.name}' for thing in self.prey)}, and am eaten by {'nothing' if not self.predator else ', '.join(f'{thing.name}' for thing in self.predator)}."
-        
+
     def __repr__(self):
         return self.name
 
@@ -67,12 +67,17 @@ class FoodWeb:
             "Primary": [],
             "Secondary": [],
             "Teritary": [],
-            "Apex": []
+            "Apex": [],
         }
-        
+
         for entity in entities:
-            self.entities[entity] = {"Name": entity.name, "Rank": entity.rank, "Apex": entity.apex, "Object": entity}
-        
+            self.entities[entity] = {
+                "Name": entity.name,
+                "Rank": entity.rank,
+                "Apex": entity.apex,
+                "Object": entity,
+            }
+
         for entity in self.entities:
             if not entity.predator and entity.prey:
                 entity.apex = True
@@ -107,4 +112,3 @@ print("\n")
 print(web.entities)
 print("\n")
 print(web.catagorised)
-
