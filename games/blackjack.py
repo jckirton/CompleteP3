@@ -144,7 +144,7 @@ class Hand:
         if card.rank == "Ace":
             self.aces += 1
 
-        adjust_for_ace()
+        adjust_for_ace(self)
 
 
 # Defining the chips object.
@@ -394,7 +394,6 @@ def hit(deck, hand):
     # Gets the top card, gives it to the hand, and tells the hand to do ace math.
     card = deck.deal()
     hand.add_card(card)
-    hand.adjust_for_ace()
 
 
 def hit_or_stand(deck: Deck, player_hand: Hand):
@@ -414,7 +413,7 @@ def hit_or_stand(deck: Deck, player_hand: Hand):
     if choice in "hit" and choice != "" and player_hand.value != 21:
         hit(deck, player_hand)
     # Stoping the player from ruining a perfect hand, and making them stand.
-    elif player_hand.value == 21 and choice in "hit":
+    elif player_hand.value == 21 and choice in "hit" and choice != "":
         print("\nI'm not letting you bust yourself!")
         time.sleep(1.5)
         print("\n---- Player Stands. Dealers turn. ----")
