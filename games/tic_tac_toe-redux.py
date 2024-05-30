@@ -9,7 +9,7 @@ from colorama import Fore
 
 class Piece:
     """
-    A tic tac toe piece, comprised of a single-character representation on the board, and the piece's position.
+    A tic tac toe piece, comprised of a single-character representation on the board, and the piece's age.
 
     marker: A single-character string that represents the piece on the playspace.
     position: the position of the piece on the playspace.
@@ -174,7 +174,7 @@ game = Game(
     Board(),
     [Player("X", "P1"), Player("O", "P2")],
 )
-decay = input("Should the pieces decay?\n")
+decay = input("Should the pieces decay?\n").lower()
 if decay in "no":
     game.play()
 elif decay in "yes":
