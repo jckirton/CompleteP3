@@ -660,9 +660,9 @@ def play():
         elif player_hand.value == 21:
             blackjack(player_hand, dealer_hand, player_chips)
             black_jack = True
-        elif dealer_hand.value == 21:
-            blackjack(player_hand, dealer_hand, player_chips, win=False)
-            black_jack = True
+        # elif dealer_hand.value == 21:
+        #     blackjack(player_hand, dealer_hand, player_chips, win=False)
+        #     black_jack = True
 
         # Player turn.
         while player_turn and not black_jack:
