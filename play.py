@@ -1,4 +1,4 @@
-from games import tic_tac_toe, blackjack, num_guess, num_guess_V2
+from games import tic_tac_toe, blackjack, num_guess, num_guess_V2, tic_tac_toe_redux
 import time
 
 
@@ -166,7 +166,13 @@ while True:
         "Which game would you like to play?\n\n1: Tic Tac Toe\n2: Blackjack\n3: Number Guess V1\n4: Number Guess V2\n\n"
     )
     if game == "1":
-        tic_tac_toe.play()
+        print("\n" * 100)
+        which = input("Normal or redux?\n\n").lower()
+        if which in "redux":
+            print("\n" * 100)
+            tic_tac_toe_redux.play()
+        elif which in "normal":
+            tic_tac_toe.play()
     elif game == "2":
         blackjack.play()
     elif game == "3":

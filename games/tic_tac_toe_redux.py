@@ -53,6 +53,19 @@ class Board:
         # if board_style_source:
         #     pass
 
+    def reset(self):
+        self.state = {
+            1: None,
+            2: None,
+            3: None,
+            4: None,
+            5: None,
+            6: None,
+            7: None,
+            8: None,
+            9: None,
+        }
+
     def __str__(self):
         # return f"{self.state}"
         # return self.display
@@ -151,6 +164,35 @@ class Game:
                     print("Input not valid. Try again.")
                     sleep(0.5)
 
+        def reset_board(self, board: Board):
+            board.reset()
+
+    def replay(self):
+        from random import randint
+
+        while True:
+            # The replay prompt and input.
+            # The "lower" method is used to convert all the characters to lowercase, allowing checks to work as intended as "in" and "==" statements are case sensitive.
+            check = input(
+                'Would you like to play again?\nType "maybe" or "?" to leave it up to the computer.\n'
+            ).lower()
+            # Checks if the user's response was "no", "yes", or "maybe?", using the "in" statement to allow inputs such as "y", "n", "m", and "?" to handle correctly.
+            # "no" is checked first as the in statement also returns true from an empty string, meaning that if enter is pressed with no supplied text, "no" is chosen.
+            if check in "no":
+                return False
+            elif check in "yes":
+                print("\n" * 100)
+                return True
+            elif check in "maybe?":
+                # If the user decides to leave it up to the computer, there is a 50/50 chance the game will begin again.
+                # This is achieved due to data in python having "truethy" and "falsey" values.
+                # In this case, 0 has a "falsey" value, meaning that the bool method will return false. 1 is the inverse, with it having a "truethy" value.
+                return bool(randint(0, 1))
+            # When an invalid response is given, the user is prompted again.
+            else:
+                print("Yes or no?")
+                sleep(1)
+
     def play(self, decay: bool = False):
         game_manager = self.GameManager(age=decay)
         self.game_on = True
@@ -168,14 +210,23 @@ class Game:
                     )
                     self.game_on = False
                     break
+            if self.game_on == False:
+                if self.replay():
+                    self.game_on = True
+                    game_manager.reset_board(self.board)
 
 
-game = Game(
-    Board(),
-    [Player("X", "P1"), Player("O", "P2")],
-)
-decay = input("Should the pieces decay?\n").lower()
-if decay in "no":
-    game.play()
-elif decay in "yes":
-    game.play(True)
+def play():
+    game = Game(
+        Board(),
+        [Player("X", "P1"), Player("O", "P2")],
+    )
+    decay = input("Should the pieces decay?\n").lower()
+    if decay in "no":
+        game.play()
+    elif decay in "yes":
+        game.play(True)
+
+
+if __name__ == "__main__":
+    play()
