@@ -2,10 +2,9 @@
 A redux of my tic tac toe game, now using objects!
 """
 
-from time     import sleep
-from copy     import copy
+from time import sleep
+from copy import copy
 from colorama import Fore
-from os.path  import exists
 
 DEFAULT = """7    |8    |9    
   %s  |  %s  |  %s
@@ -180,7 +179,7 @@ class Game:
                         player.place_piece(board, move)
                         break
                  
-                except ValueError:
+                except (ValueError, IndexError):
                     print("Input not valid. Try again.")
                     sleep(1.5)
 
