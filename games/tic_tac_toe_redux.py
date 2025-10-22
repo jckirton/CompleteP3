@@ -6,6 +6,17 @@ from time import sleep
 from copy import copy
 from colorama import Fore
 
+DEFAULT = """7    |8    |9    
+  %s  |  %s  |  %s
+     |     |     
+-----|-----|-----
+4    |5    |6    
+  %s  |  %s  |  %s
+     |     |     
+-----|-----|-----
+1    |2    |3    
+  %s  |  %s  |  %s
+     |     |     """
 
 class Piece:
     """
@@ -73,8 +84,15 @@ class Board:
         for i in pos:
             if pos[i] is None:
                 pos[i] = " "
-        with open("default.txt", "r") as source:
-            display = eval(source.read())
+                
+        print(list(range(9, 0, -1)))
+        
+        display = DEFAULT % tuple(pos[i] for i in [
+            7, 8, 9, 
+            4, 5, 6,
+            1, 2, 3
+        ])
+        
         return display
 
 
@@ -160,7 +178,8 @@ class Game:
                             self.age_pieces(board, player)
                         player.place_piece(board, move)
                         break
-                except Exception:
+                 
+                except (ValueError, IndexError):
                     print("Input not valid. Try again.")
                     sleep(1.5)
 
@@ -221,7 +240,8 @@ def play():
         Board(),
         [Player("X", "P1"), Player("O", "P2")],
     )
-    decay = input("Should the pieces decay?\n").lower()
+    decay = input("Should the pieces decay?\n").lower().strip() # prevents windows fuckery
+    
     if decay in "no":
         game.play()
     elif decay in "yes":
