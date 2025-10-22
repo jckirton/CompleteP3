@@ -6,15 +6,15 @@ from time import sleep
 from copy import copy
 from colorama import Fore
 
-DEFAULT = """7    |8    |9    
+DEFAULT = """7    |8    |9
   %s  |  %s  |  %s
-     |     |     
+     |     |
 -----|-----|-----
-4    |5    |6    
+4    |5    |6
   %s  |  %s  |  %s
-     |     |     
+     |     |
 -----|-----|-----
-1    |2    |3    
+1    |2    |3
   %s  |  %s  |  %s
      |     |     """
 
