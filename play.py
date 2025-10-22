@@ -181,7 +181,7 @@ while True:
         num_guess_V2.play()
     elif game in "":
         print("\n" * 100)
-        print("Ok, bye!\n\n-Jasmine Kirton")
+        print("Ok, bye!")
         time.sleep(2.5)
         print("\n" * 100)
         break

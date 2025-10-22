@@ -154,7 +154,7 @@ class Game:
                     # print(board.state[move])
                     if board.state[move] is not None:
                         print("Space taken, choose another.")
-                        sleep(0.5)
+                        sleep(1.5)
                     else:
                         if self.age:
                             self.age_pieces(board, player)
@@ -162,7 +162,7 @@ class Game:
                         break
                 except Exception:
                     print("Input not valid. Try again.")
-                    sleep(0.5)
+                    sleep(1.5)
 
         def reset_board(self, board: Board):
             board.reset()
@@ -210,7 +210,7 @@ class Game:
                     )
                     self.game_on = False
                     break
-            if self.game_on == False:
+            if self.game_on is False:
                 if self.replay():
                     self.game_on = True
                     game_manager.reset_board(self.board)
