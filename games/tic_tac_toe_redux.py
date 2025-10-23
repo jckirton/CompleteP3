@@ -153,7 +153,7 @@ class Game:
                 try:
                     if board.state[pos].marker == player.marker:
                         board.state[pos].age_piece()
-                    if board.state[pos].age == 3:
+                    if board.state[pos].age >= 3:
                         board.state[pos] = None
                 except AttributeError:
                     pass
