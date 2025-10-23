@@ -155,7 +155,7 @@ class Game:
                         board.state[pos].age_piece()
                     if board.state[pos].age == 3:
                         board.state[pos] = None
-                except Exception:
+                except AttributeError:
                     pass
 
         def do_turn(self, board: Board, player: Player):
@@ -174,7 +174,7 @@ class Game:
                         player.place_piece(board, move)
                         break
 
-                except (ValueError, IndexError):
+                except (ValueError, KeyError):
                     print("Input not valid. Try again.")
                     sleep(1.5)
 
