@@ -130,8 +130,8 @@ class Game:
         self.game_on: bool
 
     class GameManager:
-        def __init__(self, age: bool = False):
-            self.age = age
+        def __init__(self):
+            self.age = True
 
         def check_full(self, board: Board) -> bool:
             for pos in board.state:
@@ -183,22 +183,23 @@ class Game:
                     print("\n" * 100)
                     print(board)
                     try:
-                        move = int(
-                            input_with_timeout(f"\n{player.id}, choose a space: ", 5)
-                        )
-                    except ValueError, TimeoutError:
-                        raise InvalidMove
+                        move = input_with_timeout(f"\n{player.id}, choose a space: ", 5)
+                        move = int(move)
+                    except ValueError:
+                        raise InvalidMove(f"move '{move}' is not a number")
+                    except TimeoutError:
+                        raise InvalidMove("move not made within time limit")
                     # print(board.state[move])
                     try:
                         if board.state[move] is not None:
-                            raise InvalidMove
+                            raise InvalidMove(f"position {move} already filled")
                         else:
                             if self.age:
                                 self.age_pieces(board, player)
                             player.place_piece(board, move)
                             break
                     except KeyError:
-                        raise InvalidMove
+                        raise InvalidMove(f"position {move} not within board")
 
                 except InvalidMove:
                     if self.age:
@@ -234,8 +235,8 @@ class Game:
                 print("Yes or no?")
                 sleep(1)
 
-    def play(self, decay: bool = False):
-        game_manager = self.GameManager(age=decay)
+    def play(self):
+        game_manager = self.GameManager()
         self.game_on = True
 
         while self.game_on:
@@ -262,14 +263,8 @@ def play():
         Board(),
         [Player("0", "Defender"), Player("1", "Attacker")],
     )
-    decay = (
-        input("Should the pieces decay?\n").lower().strip()
-    )  # prevents windows fuckery
 
-    if decay in "no":
-        game.play()
-    elif decay in "yes":
-        game.play(True)
+    game.play()
 
 
 if __name__ == "__main__":
