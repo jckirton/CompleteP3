@@ -185,13 +185,15 @@ class Game:
         def do_turn(self, board: Board, player: Player):
             while True:
                 try:
-                    print("\n" * 100)
+                    print("\n" * 20)
                     print(board)
                     try:
                         move = input_with_timeout(f"\n{player.id}, choose a space: ", 5)
-                        move = int(move)
+                        move = int(move[-1])
                     except ValueError:
                         raise InvalidMove(f"move '{move}' is not a number")
+                    except IndexError:
+                        raise InvalidMove("empty move, turn passed")
                     except TimeoutError:
                         raise InvalidMove("move not made within time limit")
                     # print(board.state[move])
@@ -228,7 +230,7 @@ class Game:
             if check in "no":
                 return False
             elif check in "yes":
-                print("\n" * 100)
+                print("\n" * 20)
                 return True
             elif check in "maybe?":
                 # If the user decides to leave it up to the computer, there is a 50/50 chance the game will begin again.
@@ -248,12 +250,12 @@ class Game:
             for p in self.players:
                 game_manager.do_turn(self.board, p)
                 if game_manager.check_win(self.board, p):
-                    print(("\n" * 100) + f"{self.board}\n\n{p.id} won.")
+                    print(("\n" * 20) + f"{self.board}\n\n{p.id} won.")
                     self.game_on = False
                     break
                 if game_manager.check_full(self.board):
                     print(
-                        ("\n" * 100) + f"{self.board}\n\nThe board is full, nobody won."
+                        ("\n" * 20) + f"{self.board}\n\nThe board is full, nobody won."
                     )
                     self.game_on = False
                     break
@@ -266,7 +268,7 @@ class Game:
 def play():
     game = Game(
         Board(),
-        [Player("0", "Defender"), Player("1", "Attacker")],
+        [Player("0", "Defender (0)"), Player("1", "Attacker (1)")],
     )
 
     game.play()
