@@ -266,10 +266,16 @@ class Game:
 
 
 def play():
+    from os import system
+
     game = Game(
         Board(),
         [Player("0", "Defender (0)"), Player("1", "Attacker (1)")],
     )
+
+    system("clear")
+
+    input("Press enter to start game.\n")
 
     game.play()
 
