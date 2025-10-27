@@ -4,7 +4,6 @@ A redux of my tic tac toe game, now using objects!
 
 from time import sleep
 from copy import copy
-from colorama import Fore
 
 DEFAULT = """7    |8    |9
   %s  |  %s  |  %s
@@ -50,15 +49,21 @@ class Piece:
         self.marker = marker
         self.position = position
         self.age = 0
+        self.AGE_COLORS = {
+            "clear": "\x1b[0m",  # Clear
+            "red": "\x1b[0;31m",  # Red
+            "yellow": "\x1b[1;33m",  # Yellow
+            "green": "\x1b[0;32m",
+        }
 
     def age_piece(self):
         self.age += 1
 
     def __str__(self):
         if self.age == 1:
-            return f"{Fore.YELLOW}{self.marker}{Fore.RESET}"
+            return f"{self.AGE_COLORS["yellow"]}{self.marker}{self.AGE_COLORS["clear"]}"
         if self.age == 2:
-            return f"{Fore.RED}{self.marker}{Fore.RESET}"
+            return f"{self.AGE_COLORS["red"]}{self.marker}{self.AGE_COLORS["clear"]}"
         return self.marker
 
 
